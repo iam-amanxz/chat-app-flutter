@@ -1,4 +1,4 @@
-import "package:chat_app/models/user/user.dart";
+import "../user/user.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import 'package:intl/intl.dart';
 

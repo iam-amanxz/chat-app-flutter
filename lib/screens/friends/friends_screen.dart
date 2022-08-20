@@ -1,6 +1,5 @@
-import 'dart:async';
-
-import 'package:chat_app/screens/widgets/page_title.dart';
+import '../../models/chat/chat.dart';
+import '../messages/chat_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../di.dart';
 import '../../main.dart';
 import '../../models/user/user.dart';
+import '../chats/bloc/chats_bloc.dart';
+import '../widgets/page_title.dart';
 import 'bloc/friends_bloc.dart';
 
 class FriendsScreen extends ConsumerStatefulWidget {
@@ -19,10 +20,22 @@ class FriendsScreen extends ConsumerStatefulWidget {
 
 class _FriendsScreenState extends ConsumerState<FriendsScreen>
     with AutomaticKeepAliveClientMixin {
+  late final TextEditingController _messageController;
+  late final ScrollController _listController;
+  final _form = GlobalKey<FormState>();
+
   @override
   initState() {
-    context.read<FriendsBloc>().add(FriendsStarted());
+    _messageController = TextEditingController();
+    _listController = ScrollController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _listController.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,14 +51,31 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen>
           const SizedBox(height: 15),
           _buildSearch(context),
           const SizedBox(height: 15),
-          BlocBuilder<FriendsBloc, FriendsState>(
-            builder: (context, state) {
-              return state.when(
-                started: () => const SizedBox(),
-                loading: () => const Text('Loading...'),
-                error: () => const Text('Error'),
-                success: (friends) => _buildFriendsList(ref, friends),
-              );
+          StreamBuilder<List<User>>(
+            stream: ref.watch(friendServiceProvider).stream.map((json) {
+              List<User> friends = [];
+              for (var item in json.docs) {
+                friends.add(
+                  User.fromJson(item.data()),
+                );
+              }
+              return friends;
+            }),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final List<User> friends = snapshot.requireData;
+                friends.removeWhere((friend) => friend.id == currentUser.id);
+                return _buildFriendsList(context, ref, friends);
+              }
+              if (snapshot.hasError) {
+                print(snapshot.error);
+                return const Text(
+                  'Oops! Something went wrong.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                );
+              }
+              return const SizedBox();
             },
           ),
         ],
@@ -55,87 +85,94 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen>
 
   @override
   bool get wantKeepAlive => true;
-}
 
-Widget _buildSearch(BuildContext context) {
-  return Theme(
-    data: Theme.of(context).copyWith(
-      splashColor: Colors.transparent,
-    ),
-    child: TextField(
-      style: const TextStyle(
-        fontSize: 14,
-        color: Colors.white,
+  Widget _buildSearch(BuildContext context) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
       ),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white10,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white10),
-          borderRadius: BorderRadius.circular(100),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
-        ),
-        labelText: 'Search',
-        labelStyle: const TextStyle(
+      child: TextField(
+        style: const TextStyle(
           fontSize: 14,
-          color: Colors.white38,
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white10,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white10),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          labelText: 'Search',
+          labelStyle: const TextStyle(
+            fontSize: 14,
+            color: Colors.white38,
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-Widget _buildFriendsList(WidgetRef ref, Stream<List<User>> friends) {
-  return StreamBuilder<List<User>>(
-      stream: friends,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final friends = snapshot.requireData;
-          friends.removeWhere((element) => element.id == currentUser.id);
-          return Expanded(
-            child: ListView.builder(
-              itemCount: friends.length,
-              itemBuilder: (context, index) {
-                final friend = friends[index];
-                return InkWell(
-                  onTap: () {
-                    print('tapped');
-                    final chats = ref.read(chatsProvider);
-                    List<User> participants = [currentUser, friend];
+  Widget _buildFriendsList(
+      BuildContext context, WidgetRef ref, List<User> friends) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: friends.length,
+        itemBuilder: (context, index) {
+          final friend = friends[index];
+          return InkWell(
+            onTap: () async {
+              List<User> participants = [currentUser, friend];
+              context
+                  .read<ChatsBloc>()
+                  .add(ChatsCreate(participants: participants));
 
-                    chats.createChat(participants);
-                  },
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Text(
-                        friend.name.substring(0, 1),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      friend.username,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      friend.email,
-                      style: const TextStyle(color: Colors.white38),
-                    ),
+              ref
+                  .read(chatsServiceProvider)
+                  .getChatByParticipants(
+                    participants,
+                  )
+                  .then((chat) {
+                if (chat != null) {
+                  showChatView(
+                    context,
+                    friend,
+                    chat,
+                    ref,
+                    _listController,
+                    _messageController,
+                    _form,
+                  );
+                }
+              });
+            },
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(
+                  friend.name.substring(0, 1),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
                   ),
-                );
-              },
+                ),
+              ),
+              title: Text(
+                friend.name,
+                style: const TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                friend.email,
+                style: const TextStyle(color: Colors.white38),
+              ),
             ),
           );
-        }
-        if (snapshot.hasError) {
-          return const Text('Error');
-        }
-        return const SizedBox();
-      });
+        },
+      ),
+    );
+  }
 }

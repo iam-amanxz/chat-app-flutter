@@ -10,7 +10,7 @@ part 'friends_event.dart';
 part 'friends_state.dart';
 
 class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
-  final FriendsService service;
+  final FriendService service;
   FriendsBloc({required this.service}) : super(const FriendsState.started()) {
     on<FriendsEvent>((event, emit) {
       if (event is FriendsStarted) return _onStarted(event, emit);
@@ -19,6 +19,6 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
 
   void _onStarted(FriendsStarted event, Emitter<FriendsState> emit) async {
     emit(const FriendsState.loading());
-    emit(FriendsState.success(friends: service.subscription));
+    emit(FriendsState.success());
   }
 }

@@ -20,7 +20,7 @@ mixin _$ChatsState {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(ChatSuccessType type, List<Chat>? chats) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ChatsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ChatsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(ChatSuccessType type, List<Chat>? chats) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return started();
@@ -136,7 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return started?.call();
@@ -147,7 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(ChatSuccessType type, List<Chat>? chats) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -319,7 +319,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({ChatSuccessType type, List<Chat>? chats});
 }
 
 /// @nodoc
@@ -330,76 +329,36 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$ChatsStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
-
-  @override
-  $Res call({
-    Object? type = freezed,
-    Object? chats = freezed,
-  }) {
-    return _then(_$_Success(
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatSuccessType,
-      chats: chats == freezed
-          ? _value._chats
-          : chats // ignore: cast_nullable_to_non_nullable
-              as List<Chat>?,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.type, final List<Chat>? chats})
-      : _chats = chats;
-
-  @override
-  final ChatSuccessType type;
-  final List<Chat>? _chats;
-  @override
-  List<Chat>? get chats {
-    final value = _chats;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  const _$_Success();
 
   @override
   String toString() {
-    return 'ChatsState.success(type: $type, chats: $chats)';
+    return 'ChatsState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other._chats, _chats));
+        (other.runtimeType == runtimeType && other is _$_Success);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(_chats));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(ChatSuccessType type, List<Chat>? chats) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
-    return success(type, chats);
+    return success();
   }
 
   @override
@@ -407,10 +366,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
-    return success?.call(type, chats);
+    return success?.call();
   }
 
   @override
@@ -418,12 +377,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(type, chats);
+      return success();
     }
     return orElse();
   }
@@ -467,15 +426,7 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements ChatsState {
-  const factory _Success(
-      {required final ChatSuccessType type,
-      final List<Chat>? chats}) = _$_Success;
-
-  ChatSuccessType get type;
-  List<Chat>? get chats;
-  @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Success() = _$_Success;
 }
 
 /// @nodoc
@@ -518,7 +469,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(ChatSuccessType type, List<Chat>? chats) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return error();
@@ -529,7 +480,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return error?.call();
@@ -540,7 +491,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(ChatSuccessType type, List<Chat>? chats)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {

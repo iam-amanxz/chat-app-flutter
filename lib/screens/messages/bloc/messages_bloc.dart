@@ -13,11 +13,11 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
   final MessageService service;
   MessagesBloc({required this.service}) : super(const MessagesState.started()) {
     on<MessagesEvent>((event, state) {
-      if (event is MessageCreate) return _onCreate(event, state);
+      if (event is MessageSend) return _onCreate(event, state);
     });
   }
 
-  void _onCreate(MessageCreate event, Emitter<MessagesState> emit) async {
+  void _onCreate(MessageSend event, Emitter<MessagesState> emit) async {
     emit(const MessagesState.loading());
     try {
       await service.sendMessage(event.message);

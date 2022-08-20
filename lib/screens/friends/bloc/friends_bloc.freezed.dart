@@ -20,7 +20,7 @@ mixin _$FriendsState {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(Stream<List<User>> friends) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$FriendsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$FriendsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(Stream<List<User>> friends) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return started();
@@ -136,7 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return started?.call();
@@ -147,7 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(Stream<List<User>> friends) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -319,7 +319,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({Stream<List<User>> friends});
 }
 
 /// @nodoc
@@ -330,59 +329,36 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$FriendsStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
-
-  @override
-  $Res call({
-    Object? friends = freezed,
-  }) {
-    return _then(_$_Success(
-      friends: friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
-              as Stream<List<User>>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.friends});
-
-  @override
-  final Stream<List<User>> friends;
+  const _$_Success();
 
   @override
   String toString() {
-    return 'FriendsState.success(friends: $friends)';
+    return 'FriendsState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other.friends, friends));
+        (other.runtimeType == runtimeType && other is _$_Success);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(friends));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(Stream<List<User>> friends) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
-    return success(friends);
+    return success();
   }
 
   @override
@@ -390,10 +366,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
-    return success?.call(friends);
+    return success?.call();
   }
 
   @override
@@ -401,12 +377,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(friends);
+      return success();
     }
     return orElse();
   }
@@ -450,13 +426,7 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements FriendsState {
-  const factory _Success({required final Stream<List<User>> friends}) =
-      _$_Success;
-
-  Stream<List<User>> get friends;
-  @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Success() = _$_Success;
 }
 
 /// @nodoc
@@ -499,7 +469,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function(Stream<List<User>> friends) success,
+    required TResult Function() success,
     required TResult Function() error,
   }) {
     return error();
@@ -510,7 +480,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
   }) {
     return error?.call();
@@ -521,7 +491,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function(Stream<List<User>> friends)? success,
+    TResult Function()? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {

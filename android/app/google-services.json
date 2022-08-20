@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1049799285391",
+    "project_id": "amanxz-social-media-app",
+    "storage_bucket": "amanxz-social-media-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049799285391:android:b4a6f89966d2866bc4aefa",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049799285391-pltvib9mtp95fai5gv5nvh7ovfmqdb9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf2sXYnFcepavR3d_G1f6HBP-dQDI0PMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049799285391-pltvib9mtp95fai5gv5nvh7ovfmqdb9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049799285391:android:6d981025e5894574c4aefa",
+        "android_client_info": {
+          "package_name": "com.example.flutter_social_media_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049799285391-pltvib9mtp95fai5gv5nvh7ovfmqdb9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf2sXYnFcepavR3d_G1f6HBP-dQDI0PMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049799285391-pltvib9mtp95fai5gv5nvh7ovfmqdb9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

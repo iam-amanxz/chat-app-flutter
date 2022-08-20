@@ -1,7 +1,8 @@
-import 'package:chat_app/screens/messages/bloc/messages_bloc.dart';
+import 'firebase_options.dart';
+import 'screens/messages/bloc/messages_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,7 +13,7 @@ import 'screens/chats/bloc/chats_bloc.dart';
 import 'screens/friends/bloc/friends_bloc.dart';
 
 const currentUser = User(
-  id: "d2225da0-c74e-4a53-a889-f197a9b909ab",
+  id: "rwNDeCjUmrfORKjnzZIO",
   username: 'amanxz',
   name: 'Husnul Aman',
   email: 'amanxz@gmail.com',
@@ -31,7 +32,10 @@ final GoRouter _router = GoRouter(
 );
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const ProviderScope(child: MyApp()),
   );
@@ -46,17 +50,17 @@ class MyApp extends ConsumerWidget {
       providers: [
         BlocProvider(
           create: (context) => ChatsBloc(
-            service: ref.read(chatsProvider),
+            service: ref.read(chatsServiceProvider),
           ),
         ),
         BlocProvider(
           create: (context) => FriendsBloc(
-            service: ref.read(friendsProvider),
+            service: ref.read(friendServiceProvider),
           ),
         ),
         BlocProvider(
           create: (context) => MessagesBloc(
-            service: ref.read(messageProvider),
+            service: ref.read(messageServiceProvider),
           ),
         ),
       ],

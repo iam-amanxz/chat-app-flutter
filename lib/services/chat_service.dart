@@ -1,85 +1,60 @@
 import 'dart:async';
 
-import 'package:chat_app/models/message/message.dart';
-import 'package:chat_app/models/user/user.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase/supabase.dart' as sb;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../di.dart';
 import '../models/chat/chat.dart';
+import '../models/user/user.dart';
 
 class ChatService {
-  late final Reader reader;
-  late final sb.SupabaseClient client;
-  late final Stream<List<Chat>> subscription;
-
-  final List<Chat> _chats = [];
-
-  set chats(List<Chat> chats) {
-    _chats.clear();
-    _chats.addAll(chats);
+  Future<Chat?> getChatByParticipants(List<User> participants) {
+    final json = [];
+    for (var participant in participants) {
+      json.add(participant.toJson());
+    }
+    print(participants);
+    final chatRef = FirebaseFirestore.instance.collection('chats');
+    final query = chatRef.where('participants', arrayContainsAny: json);
+    return query.get().then((snapshot) {
+      if (snapshot.docs.isNotEmpty) {
+        print(snapshot.docs);
+        return Chat.fromJson(snapshot.docs.first.data());
+      } else {
+        return null;
+      }
+    }).catchError((e) {
+      print('error: getChatByParticipants');
+      print(e.toString());
+    });
   }
 
-  List<Chat> get chats => _chats;
+  Future<void> createChat(List<User> participants) async {
+    final chatRef = FirebaseFirestore.instance.collection('chats');
+    final snapshot = await chatRef.get();
+    final exists = snapshot.docs.any((doc) {
+      final chat = Chat.fromJson(doc.data());
+      return chat.participants.every((p) => participants.contains(p));
+    });
 
-  Future<sb.PostgrestResponse<dynamic>> fetchChats() {
-    return client.from('chats').select().execute();
-  }
+    if (exists) {
+      return;
+    }
 
-  Future<dynamic> createChat(List<User> participants) {
-    final json = Chat.toDb(
+    final ref = FirebaseFirestore.instance.collection('chats').doc();
+    final chat = Chat.toDb(
       participants: participants,
-    ).jsonToDb();
+    );
 
-    return client
-        .from('chats')
-        .upsert(
-          json,
-          returning: sb.ReturningOption.minimal,
-        )
-        .execute()
-        .then((value) => value.data);
+    return ref.set({
+      ...chat.jsonToDb(),
+      "id": ref.id,
+      "createdAt": DateTime.now().toIso8601String(),
+      "updatedAt": DateTime.now().toIso8601String(),
+    });
   }
 
-  Future<dynamic> sendMessage(Message message) {
-    return client
-        .from('messages')
-        .insert(
-          message.jsonToDb(),
-          returning: sb.ReturningOption.minimal,
-        )
-        .execute()
-        .then((value) => value.data);
-  }
-
-  Stream<List<Message>> messagesSub(String chatId) => client
-      .from('messages:chatId=eq.$chatId')
-      .stream(['id'])
-      .order('createdAt', ascending: true)
-      .execute()
-      .map((json) {
-        List<Message> messages = [];
-        for (var message in json) {
-          messages.add(Message.fromJson(message));
-        }
-        print(messages);
-        return messages;
-      });
-
-  ChatService({required this.reader}) : client = reader(sbClientProvider) {
-    subscription = client
-        .from('chats')
-        .stream(['id'])
-        .order('updatedAt')
-        .execute()
-        .map((json) {
-          List<Chat> chats = [];
-          for (var chat in json) {
-            chats.add(Chat.fromJson(chat));
-          }
-          return chats;
-        });
-  }
-
-  Stream<List<Chat>> get chatsStream => subscription;
+  Stream<QuerySnapshot<Map<String, dynamic>>> get stream =>
+      FirebaseFirestore.instance
+          .collection('chats')
+          .orderBy('updatedAt')
+          .snapshots();
 }
