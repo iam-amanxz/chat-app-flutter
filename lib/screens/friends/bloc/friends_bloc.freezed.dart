@@ -20,24 +20,24 @@ mixin _$FriendsState {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(User? friend) success,
+    required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -125,8 +125,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(User? friend) success,
+    required TResult Function(String? message) error,
   }) {
     return started();
   }
@@ -136,8 +136,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
   }) {
     return started?.call();
   }
@@ -147,8 +147,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -240,8 +240,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(User? friend) success,
+    required TResult Function(String? message) error,
   }) {
     return loading();
   }
@@ -251,8 +251,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
   }) {
     return loading?.call();
   }
@@ -262,8 +262,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,6 +319,9 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({User? friend});
+
+  $UserCopyWith<$Res>? get friend;
 }
 
 /// @nodoc
@@ -329,36 +332,70 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$FriendsStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? friend = freezed,
+  }) {
+    return _then(_$_Success(
+      friend: friend == freezed
+          ? _value.friend
+          : friend // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get friend {
+    if (_value.friend == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.friend!, (value) {
+      return _then(_value.copyWith(friend: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success({this.friend});
+
+  @override
+  final User? friend;
 
   @override
   String toString() {
-    return 'FriendsState.success()';
+    return 'FriendsState.success(friend: $friend)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other.friend, friend));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(friend));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(User? friend) success,
+    required TResult Function(String? message) error,
   }) {
-    return success();
+    return success(friend);
   }
 
   @override
@@ -366,10 +403,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
   }) {
-    return success?.call();
+    return success?.call(friend);
   }
 
   @override
@@ -377,12 +414,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(friend);
     }
     return orElse();
   }
@@ -426,13 +463,19 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements FriendsState {
-  const factory _Success() = _$_Success;
+  const factory _Success({final User? friend}) = _$_Success;
+
+  User? get friend;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -443,36 +486,59 @@ class __$$_ErrorCopyWithImpl<$Res> extends _$FriendsStateCopyWithImpl<$Res>
 
   @override
   _$_Error get _value => super._value as _$_Error;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_Error(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error({this.message});
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'FriendsState.error()';
+    return 'FriendsState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Error);
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(User? friend) success,
+    required TResult Function(String? message) error,
   }) {
-    return error();
+    return error(message);
   }
 
   @override
@@ -480,10 +546,10 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
   }) {
-    return error?.call();
+    return error?.call(message);
   }
 
   @override
@@ -491,12 +557,12 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(User? friend)? success,
+    TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -540,5 +606,10 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements FriendsState {
-  const factory _Error() = _$_Error;
+  const factory _Error({final String? message}) = _$_Error;
+
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
 }

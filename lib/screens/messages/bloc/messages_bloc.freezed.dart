@@ -20,7 +20,7 @@ mixin _$MessagesState {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(User? friend, Chat? chat) success,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$MessagesState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$MessagesState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(User? friend, Chat? chat) success,
     required TResult Function() error,
   }) {
     return started();
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
   }) {
     return started?.call();
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -241,7 +241,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(User? friend, Chat? chat) success,
     required TResult Function() error,
   }) {
     return loading();
@@ -252,7 +252,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
   }) {
     return loading?.call();
@@ -263,7 +263,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -320,6 +320,10 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({User? friend, Chat? chat});
+
+  $UserCopyWith<$Res>? get friend;
+  $ChatCopyWith<$Res>? get chat;
 }
 
 /// @nodoc
@@ -330,36 +334,91 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$MessagesStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? friend = freezed,
+    Object? chat = freezed,
+  }) {
+    return _then(_$_Success(
+      friend: friend == freezed
+          ? _value.friend
+          : friend // ignore: cast_nullable_to_non_nullable
+              as User?,
+      chat: chat == freezed
+          ? _value.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get friend {
+    if (_value.friend == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.friend!, (value) {
+      return _then(_value.copyWith(friend: value));
+    });
+  }
+
+  @override
+  $ChatCopyWith<$Res>? get chat {
+    if (_value.chat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_value.chat!, (value) {
+      return _then(_value.copyWith(chat: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success({this.friend, this.chat});
+
+  @override
+  final User? friend;
+  @override
+  final Chat? chat;
 
   @override
   String toString() {
-    return 'MessagesState.success()';
+    return 'MessagesState.success(friend: $friend, chat: $chat)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other.friend, friend) &&
+            const DeepCollectionEquality().equals(other.chat, chat));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(friend),
+      const DeepCollectionEquality().hash(chat));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(User? friend, Chat? chat) success,
     required TResult Function() error,
   }) {
-    return success();
+    return success(friend, chat);
   }
 
   @override
@@ -367,10 +426,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
   }) {
-    return success?.call();
+    return success?.call(friend, chat);
   }
 
   @override
@@ -378,12 +437,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(friend, chat);
     }
     return orElse();
   }
@@ -427,7 +486,13 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements MessagesState {
-  const factory _Success() = _$_Success;
+  const factory _Success({final User? friend, final Chat? chat}) = _$_Success;
+
+  User? get friend;
+  Chat? get chat;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -470,7 +535,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(User? friend, Chat? chat) success,
     required TResult Function() error,
   }) {
     return error();
@@ -481,7 +546,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
   }) {
     return error?.call();
@@ -492,7 +557,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(User? friend, Chat? chat)? success,
     TResult Function()? error,
     required TResult orElse(),
   }) {

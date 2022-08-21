@@ -1,7 +1,7 @@
-import '../messages/chat_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../di.dart';
 import '../../main.dart';
@@ -21,24 +21,6 @@ class ChatsScreen extends ConsumerStatefulWidget {
 
 class _ChatsScreenState extends ConsumerState<ChatsScreen>
     with AutomaticKeepAliveClientMixin {
-  late final TextEditingController _messageController;
-  late final ScrollController _listController;
-  final _form = GlobalKey<FormState>();
-
-  @override
-  initState() {
-    _messageController = TextEditingController();
-    _listController = ScrollController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _messageController.dispose();
-    _listController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -151,237 +133,8 @@ class _ChatsScreenState extends ConsumerState<ChatsScreen>
               // final chats = ref.read(chatsServiceProvider);
               // List<User> participants = [currentUser, friend];
               // chats.createChat(participants);
-
-              showChatView(
-                context,
-                friend,
-                chat,
-                ref,
-                _listController,
-                _messageController,
-                _form,
-              );
-              // open chat view
-              // showModalBottomSheet(
-              //   backgroundColor: Colors.black,
-              //   isScrollControlled: true,
-              //   context: context,
-              //   builder: (context) {
-              //     return MediaQuery(
-              //       data: MediaQueryData.fromWindow(
-              //           WidgetsBinding.instance.window),
-              //       child: SafeArea(
-              //         child: Column(
-              //           children: [
-              //             Row(
-              //               children: [
-              //                 IconButton(
-              //                   onPressed: () {
-              //                     Navigator.pop(context);
-              //                   },
-              //                   icon: const Icon(
-              //                     Icons.arrow_back_ios,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //                 Expanded(
-              //                   child: ListTile(
-              //                     leading: CircleAvatar(
-              //                       backgroundColor: Colors.white,
-              //                       child: Text(
-              //                         friend.name.substring(0, 1),
-              //                         style: const TextStyle(
-              //                           fontSize: 20,
-              //                           color: Colors.black,
-              //                         ),
-              //                       ),
-              //                     ),
-              //                     title: Text(
-              //                       friend.name,
-              //                       style: const TextStyle(
-              //                         color: Colors.white,
-              //                       ),
-              //                     ),
-              //                     subtitle: Text(
-              //                       friend.username,
-              //                       style: const TextStyle(
-              //                         color: Colors.white38,
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             Expanded(
-              //               child: Stack(
-              //                 children: [
-              //                   Padding(
-              //                     padding: EdgeInsets.only(
-              //                       bottom: MediaQuery.of(context)
-              //                               .viewInsets
-              //                               .bottom +
-              //                           60,
-              //                     ),
-              //                     child: StreamBuilder<List<Message>>(
-
-              //                         // stream: ref
-              //                         //     .watch(messageServiceProvider)
-              //                         //     .messagesSub(chat.id),
-              //                         stream: ref
-              //                             .watch(messageServiceProvider)
-              //                             .stream(chat.id)
-              //                             .map((json) {
-              //                           print(json);
-              //                           List<Message> messages = [];
-              //                           for (var item in json.docs) {
-              //                             messages.add(
-              //                               Message.fromJson(item.data()),
-              //                             );
-              //                           }
-              //                           return messages;
-              //                         }),
-              //                         builder: (context, snapshot) {
-              //                           if (snapshot.hasData) {
-              //                             final List<Message> messages =
-              //                                 snapshot.requireData;
-              //                             return ListView.builder(
-              //                               reverse: true,
-              //                               shrinkWrap: true,
-              //                               controller: _listController,
-              //                               itemBuilder: (context, index) =>
-              //                                   Container(
-              //                                 padding: const EdgeInsets.only(
-              //                                   left: 10,
-              //                                   right: 10,
-              //                                   top: 7,
-              //                                   bottom: 7,
-              //                                 ),
-              //                                 child: Align(
-              //                                   alignment:
-              //                                       messages[index].senderId !=
-              //                                               currentUser.id
-              //                                           ? Alignment.topLeft
-              //                                           : Alignment.topRight,
-              //                                   child: Container(
-              //                                     decoration: BoxDecoration(
-              //                                       borderRadius:
-              //                                           BorderRadius.circular(
-              //                                               100),
-              //                                       color: messages[index]
-              //                                                   .senderId !=
-              //                                               currentUser.id
-              //                                           ? Colors.white24
-              //                                           : Colors.green.shade700,
-              //                                     ),
-              //                                     padding: const EdgeInsets
-              //                                         .symmetric(
-              //                                       horizontal: 16,
-              //                                       vertical: 10,
-              //                                     ),
-              //                                     child: Text(
-              //                                       messages[index].content,
-              //                                       style: const TextStyle(
-              //                                         fontSize: 14,
-              //                                         color: Colors.white,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               itemCount: messages.length,
-              //                             );
-              //                           }
-              //                           if (snapshot.hasError) {
-              //                             print(snapshot.error);
-              //                             return const Text(
-              //                               'Oops! Something went wrong.',
-              //                               textAlign: TextAlign.center,
-              //                               style:
-              //                                   TextStyle(color: Colors.white),
-              //                             );
-              //                           }
-              //                           return const SizedBox();
-              //                         }),
-              //                   ),
-              //                   Align(
-              //                     alignment: Alignment.bottomLeft,
-              //                     child: Container(
-              //                       color: Colors.black,
-              //                       child: Padding(
-              //                         padding: EdgeInsets.only(
-              //                           bottom: MediaQuery.of(context)
-              //                                   .viewInsets
-              //                                   .bottom +
-              //                               10,
-              //                         ),
-              //                         child: Row(
-              //                           children: [
-              //                             Expanded(
-              //                               child: Form(
-              //                                 key: _form,
-              //                                 child: TextFormField(
-              //                                   controller: _messageController,
-              //                                   textInputAction:
-              //                                       TextInputAction.next,
-              //                                   onChanged: (value) {
-              //                                     if (value.isEmpty) {
-              //                                       return;
-              //                                     }
-              //                                     _form.currentState!.save();
-              //                                   },
-              //                                   style: const TextStyle(
-              //                                     fontSize: 14,
-              //                                     color: Colors.white,
-              //                                   ),
-              //                                   decoration: InputDecoration(
-              //                                     filled: true,
-              //                                     fillColor: Colors.white10,
-              //                                     contentPadding:
-              //                                         const EdgeInsets
-              //                                             .symmetric(
-              //                                       horizontal: 15,
-              //                                     ),
-              //                                     enabledBorder:
-              //                                         OutlineInputBorder(
-              //                                       borderRadius:
-              //                                           BorderRadius.circular(
-              //                                               12.0),
-              //                                     ),
-              //                                     focusedBorder:
-              //                                         OutlineInputBorder(
-              //                                       borderRadius:
-              //                                           BorderRadius.circular(
-              //                                               12.0),
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                             ),
-              //                             IconButton(
-              //                               splashColor: Colors.white10,
-              //                               onPressed: () {
-              //                                 _onSend(chat);
-              //                               },
-              //                               icon: const Icon(
-              //                                 Icons.send,
-              //                                 color: Colors.white,
-              //                               ),
-              //                               disabledColor: Colors.white30,
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ),
-              //                   )
-              //                 ],
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     );
-              //   },
-              // );
+              GoRouter.of(context)
+                  .push('/chat', extra: {"friend": friend, "chat": chat});
             },
             child: ListTile(
               leading: CircleAvatar(
@@ -412,26 +165,6 @@ class _ChatsScreenState extends ConsumerState<ChatsScreen>
           );
         },
       ),
-    );
-  }
-
-  void _onSend(Chat chat) {
-    if (_messageController.text.isEmpty) {
-      return;
-    }
-    final message = Message.toDb(
-      chatId: chat.id,
-      content: _messageController.text,
-      senderId: currentUser.id,
-    );
-    print(message);
-    context.read<MessagesBloc>().add(MessageSend(message: message));
-    _messageController.clear();
-    _messageController.text = '';
-    _listController.animateTo(
-      0.0,
-      curve: Curves.easeOut,
-      duration: const Duration(milliseconds: 300),
     );
   }
 }

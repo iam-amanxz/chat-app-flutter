@@ -11,3 +11,8 @@ class ChatsCreate extends ChatsEvent {
   final List<User> participants;
   ChatsCreate({required this.participants});
 }
+
+class GetChatByParticipants extends ChatsEvent {
+  final List<User> participants;
+  GetChatByParticipants({required this.participants});
+}

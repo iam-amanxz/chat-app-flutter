@@ -4,3 +4,8 @@ part of 'friends_bloc.dart';
 abstract class FriendsEvent {}
 
 class FriendsStarted extends FriendsEvent {}
+
+class GetFriend extends FriendsEvent {
+  final String friendId;
+  GetFriend({required this.friendId});
+}

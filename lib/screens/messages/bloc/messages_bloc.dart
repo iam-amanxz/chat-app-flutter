@@ -1,6 +1,7 @@
-// ignore: depend_on_referenced_packages
-
+import 'package:chat_app/main.dart';
+import 'package:chat_app/models/chat/chat.dart';
 import 'package:chat_app/models/message/message.dart';
+import 'package:chat_app/models/user/user.dart';
 import 'package:chat_app/services/message_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,6 +15,7 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
   MessagesBloc({required this.service}) : super(const MessagesState.started()) {
     on<MessagesEvent>((event, state) {
       if (event is MessageSend) return _onCreate(event, state);
+      if (event is MessageGetChat) return _onGetChat(event, state);
     });
   }
 
@@ -22,6 +24,21 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
     try {
       await service.sendMessage(event.message);
       emit(const MessagesState.success());
+    } catch (e) {
+      emit(const MessagesState.error());
+    }
+  }
+
+  void _onGetChat(MessageGetChat event, Emitter<MessagesState> emit) async {
+    emit(const MessagesState.loading());
+    try {
+      final chat = await service.getChatByParticipants(event.participants);
+      if (chat == null) {
+        emit(const MessagesState.error());
+      }
+      final friend =
+          event.participants.firstWhere((user) => user.id != currentUser.id);
+      emit(MessagesState.success(chat: chat, friend: friend));
     } catch (e) {
       emit(const MessagesState.error());
     }

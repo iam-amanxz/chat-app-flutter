@@ -1,3 +1,5 @@
+import 'package:chat_app/screens/messages/message_screen.dart';
+
 import 'firebase_options.dart';
 import 'screens/messages/bloc/messages_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,6 +28,12 @@ final GoRouter _router = GoRouter(
       path: '/app',
       builder: (BuildContext context, GoRouterState state) {
         return const App();
+      },
+    ),
+    GoRoute(
+      path: '/chat',
+      builder: (BuildContext context, GoRouterState state) {
+        return MessageScreen(state: state);
       },
     ),
   ],

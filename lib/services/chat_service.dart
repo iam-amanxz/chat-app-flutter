@@ -11,19 +11,14 @@ class ChatService {
     for (var participant in participants) {
       json.add(participant.toJson());
     }
-    print(participants);
     final chatRef = FirebaseFirestore.instance.collection('chats');
     final query = chatRef.where('participants', arrayContainsAny: json);
     return query.get().then((snapshot) {
       if (snapshot.docs.isNotEmpty) {
-        print(snapshot.docs);
         return Chat.fromJson(snapshot.docs.first.data());
       } else {
         return null;
       }
-    }).catchError((e) {
-      print('error: getChatByParticipants');
-      print(e.toString());
     });
   }
 

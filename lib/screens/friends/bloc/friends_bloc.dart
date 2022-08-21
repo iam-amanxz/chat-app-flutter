@@ -13,12 +13,24 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
   final FriendService service;
   FriendsBloc({required this.service}) : super(const FriendsState.started()) {
     on<FriendsEvent>((event, emit) {
-      if (event is FriendsStarted) return _onStarted(event, emit);
+      if (event is GetFriend) return _onGetFriend(event, emit);
     });
   }
 
-  void _onStarted(FriendsStarted event, Emitter<FriendsState> emit) async {
+  void _onGetFriend(GetFriend event, Emitter<FriendsState> emit) async {
     emit(const FriendsState.loading());
-    emit(FriendsState.success());
+
+    try {
+      final friend = await service.getFriendById(event.friendId);
+      if (friend == null) {
+        emit(const FriendsState.error(message: "Friend not found"));
+      } else {
+        emit(FriendsState.success(friend: friend));
+      }
+    } catch (e) {
+      emit(
+        FriendsState.error(message: "Something went wrong: ${e.toString()}"),
+      );
+    }
   }
 }

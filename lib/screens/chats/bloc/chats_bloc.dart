@@ -16,6 +16,9 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
   ChatsBloc({required this.service}) : super(const ChatsState.started()) {
     on<ChatsEvent>((event, state) {
       if (event is ChatsCreate) return _onCreate(event, state);
+      if (event is GetChatByParticipants) {
+        return _onGetByParticipants(event, state);
+      }
     });
   }
 
@@ -27,6 +30,21 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
     } catch (e) {
       print(e);
       emit(const ChatsState.error());
+    }
+  }
+
+  void _onGetByParticipants(
+      GetChatByParticipants event, Emitter<ChatsState> emit) async {
+    emit(const ChatsState.loading());
+    try {
+      final chat = await service.getChatByParticipants(event.participants);
+      if (chat == null) {
+        emit(const ChatsState.error(message: "Chat not found"));
+      }
+      emit(ChatsState.success(chat: chat));
+    } catch (e) {
+      print(e);
+      emit(ChatsState.error(message: "Something went wrong: ${e.toString()}"));
     }
   }
 }

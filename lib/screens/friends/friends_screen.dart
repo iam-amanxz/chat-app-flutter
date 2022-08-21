@@ -1,15 +1,11 @@
-import '../../models/chat/chat.dart';
-import '../messages/chat_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../di.dart';
 import '../../main.dart';
 import '../../models/user/user.dart';
-import '../chats/bloc/chats_bloc.dart';
 import '../widgets/page_title.dart';
-import 'bloc/friends_bloc.dart';
 
 class FriendsScreen extends ConsumerStatefulWidget {
   const FriendsScreen({Key? key}) : super(key: key);
@@ -126,29 +122,33 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen>
           final friend = friends[index];
           return InkWell(
             onTap: () async {
-              List<User> participants = [currentUser, friend];
-              context
-                  .read<ChatsBloc>()
-                  .add(ChatsCreate(participants: participants));
+              GoRouter.of(context)
+                  .push('/chat', extra: {"friend": friend, "chat": null});
 
-              ref
-                  .read(chatsServiceProvider)
-                  .getChatByParticipants(
-                    participants,
-                  )
-                  .then((chat) {
-                if (chat != null) {
-                  showChatView(
-                    context,
-                    friend,
-                    chat,
-                    ref,
-                    _listController,
-                    _messageController,
-                    _form,
-                  );
-                }
-              });
+              return;
+              // List<User> participants = [currentUser, friend];
+              // context
+              //     .read<ChatsBloc>()
+              //     .add(ChatsCreate(participants: participants));
+
+              // ref
+              //     .read(chatsServiceProvider)
+              //     .getChatByParticipants(
+              //       participants,
+              //     )
+              //     .then((chat) {
+              //   if (chat != null) {
+              //     showChatView(
+              //       context,
+              //       friend,
+              //       chat,
+              //       ref,
+              //       _listController,
+              //       _messageController,
+              //       _form,
+              //     );
+              //   }
+              // });
             },
             child: ListTile(
               leading: CircleAvatar(
