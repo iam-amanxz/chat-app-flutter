@@ -33,7 +33,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
     if (extras["chat"] == null) {
       context.read<ChatsBloc>().add(
             GetChatByParticipants(
-              participants: [extras["friend"], currentUser],
+              participants: [extras["friend"], ref.read(currentUserProvider)],
             ),
           );
     }
@@ -100,7 +100,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                     final message = Message.toDb(
                       chatId: chat != null ? chat.id : extras["chat"].id,
                       content: _textController.text,
-                      senderId: currentUser.id,
+                      senderId: ref.watch(currentUserProvider).id,
                     );
                     context
                         .read<MessagesBloc>()
@@ -166,13 +166,15 @@ class ChatView extends StatelessWidget {
                     bottom: 7,
                   ),
                   child: Align(
-                    alignment: messages[index].senderId != currentUser.id
+                    alignment: messages[index].senderId !=
+                            ref.watch(currentUserProvider).id
                         ? Alignment.topLeft
                         : Alignment.topRight,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: messages[index].senderId != currentUser.id
+                        color: messages[index].senderId !=
+                                ref.watch(currentUserProvider).id
                             ? Colors.white24
                             : Colors.green.shade700,
                       ),

@@ -60,25 +60,6 @@ class _ChatsScreenState extends ConsumerState<ChatsScreen>
               return const SizedBox();
             },
           ),
-          const SizedBox(height: 15),
-          TextButton(
-            onPressed: () {
-              final participants = [
-                currentUser,
-                const User(
-                  id: '05b9c31b-0f57-4863-bbfc-3ea6c0e67c17',
-                  email: 'doe@mail.com',
-                  name: 'John Doe',
-                  username: 'doemans',
-                )
-              ];
-
-              context
-                  .read<ChatsBloc>()
-                  .add(ChatsCreate(participants: participants));
-            },
-            child: const Text('Add New Chat'),
-          ),
         ],
       ),
     );
@@ -124,8 +105,8 @@ class _ChatsScreenState extends ConsumerState<ChatsScreen>
         itemCount: chats.length,
         itemBuilder: (context, index) {
           final chat = chats[index];
-          final friend =
-              chat.participants.firstWhere((user) => user.id != currentUser.id);
+          final friend = chat.participants.firstWhere(
+              (user) => user.id != ref.watch(currentUserProvider).id);
           return InkWell(
             onTap: () {
               // create chat if not exists

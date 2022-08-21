@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../di.dart';
-import '../../main.dart';
 import '../../models/user/user.dart';
 import '../widgets/page_title.dart';
 
@@ -60,7 +59,8 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen>
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final List<User> friends = snapshot.requireData;
-                friends.removeWhere((friend) => friend.id == currentUser.id);
+                friends.removeWhere(
+                    (friend) => friend.id == ref.watch(currentUserProvider).id);
                 return _buildFriendsList(context, ref, friends);
               }
               if (snapshot.hasError) {
@@ -74,6 +74,17 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen>
               return const SizedBox();
             },
           ),
+          TextButton(
+              onPressed: () {
+                final user = ref.watch(currentUserProvider);
+                user == authUser1
+                    ? ref.read(currentUserProvider.notifier).state = authUser2
+                    : ref.read(currentUserProvider.notifier).state = authUser1;
+              },
+              child: const Text(
+                'Change User',
+                style: TextStyle(color: Colors.black),
+              )),
         ],
       ),
     );

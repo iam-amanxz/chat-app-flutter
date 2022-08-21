@@ -47,20 +47,14 @@ class _AppState extends State<App> {
         backgroundColor: Colors.black,
         currentIndex: _selectedIndex,
         type: BottomNavigationBarType.fixed,
-        selectedIconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        unselectedIconTheme: const IconThemeData(
-          color: Colors.white54,
-        ),
         selectedLabelStyle: const TextStyle(
-          color: Colors.white,
           fontSize: 12,
         ),
         unselectedLabelStyle: const TextStyle(
-          color: Colors.white54,
           fontSize: 12,
         ),
+        unselectedItemColor: Colors.white54,
+        selectedItemColor: Colors.white,
       ),
     );
   }

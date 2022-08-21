@@ -9,17 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'di.dart';
-import 'models/user/user.dart';
 import 'screens/app.dart';
 import 'screens/chats/bloc/chats_bloc.dart';
 import 'screens/friends/bloc/friends_bloc.dart';
-
-const currentUser = User(
-  id: "rwNDeCjUmrfORKjnzZIO",
-  username: 'amanxz',
-  name: 'Husnul Aman',
-  email: 'amanxz@gmail.com',
-);
 
 final GoRouter _router = GoRouter(
   initialLocation: '/app',
@@ -68,6 +60,7 @@ class MyApp extends ConsumerWidget {
         ),
         BlocProvider(
           create: (context) => MessagesBloc(
+            reader: ref.read,
             service: ref.read(messageServiceProvider),
           ),
         ),
