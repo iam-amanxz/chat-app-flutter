@@ -1,35 +1,13 @@
-import 'package:chat_app/screens/messages/message_screen.dart';
-
-import 'firebase_options.dart';
-import 'screens/messages/bloc/messages_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-import 'di.dart';
-import 'screens/app.dart';
-import 'screens/chats/bloc/chats_bloc.dart';
-import 'screens/friends/bloc/friends_bloc.dart';
-
-final GoRouter _router = GoRouter(
-  initialLocation: '/app',
-  routes: <GoRoute>[
-    GoRoute(
-      path: '/app',
-      builder: (BuildContext context, GoRouterState state) {
-        return const App();
-      },
-    ),
-    GoRoute(
-      path: '/chat',
-      builder: (BuildContext context, GoRouterState state) {
-        return MessageScreen(state: state);
-      },
-    ),
-  ],
-);
+import 'config/firebase_options.dart';
+import 'config/router.dart';
+import 'config/theme.dart';
+import 'features/auth/bloc/auth_bloc.dart';
+import 'features/contact/bloc/contact_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,40 +15,33 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    const ProviderScope(child: MyApp()),
+    const ProviderScope(child: App()),
   );
 }
 
-class MyApp extends ConsumerWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends ConsumerWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ChatsBloc(
-            service: ref.read(chatsServiceProvider),
-          ),
+          create: (context) => AuthBloc(ref),
         ),
         BlocProvider(
-          create: (context) => FriendsBloc(
-            service: ref.read(friendServiceProvider),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => MessagesBloc(
-            reader: ref.read,
-            service: ref.read(messageServiceProvider),
-          ),
+          create: (context) => ContactBloc(ref),
         ),
       ],
       child: MaterialApp.router(
+        themeMode: ThemeMode.system,
+        theme: lightTheme,
+        darkTheme: darkTheme,
         title: 'Chat App',
         debugShowCheckedModeBanner: false,
-        routeInformationProvider: _router.routeInformationProvider,
-        routeInformationParser: _router.routeInformationParser,
-        routerDelegate: _router.routerDelegate,
+        routeInformationProvider: router.routeInformationProvider,
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
       ),
     );
   }
