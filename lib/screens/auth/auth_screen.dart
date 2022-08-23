@@ -1,18 +1,14 @@
+import 'package:chat_app/config/di.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
 
-import '../../config/di.dart';
 import '../../features/auth/auth_state.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/auth/dto/sign_in_dto.dart';
 import '../../features/auth/dto/sign_up_dto.dart';
-import '../../features/contact/bloc/contact_bloc.dart';
-import '../../features/contact/dto/create_contact_dto.dart';
-import '../common/mixins.dart' as mix;
 import '../common/styles.dart';
 import '../common/validations.dart';
 
@@ -23,13 +19,11 @@ class AuthScreen extends ConsumerStatefulWidget {
   FirebaseAuthState<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends FirebaseAuthState<AuthScreen>
-    with mix.NotificationListener {
+class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  late final Logger _logger;
   bool _isSignUp = false;
   bool _isLoading = false;
 
@@ -42,7 +36,6 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen>
   @override
   void initState() {
     super.initState();
-    _logger = ref.read(loggerProvider);
     _nameController.text = 'John Doe';
     _usernameController.text = 'johndoe';
     _passwordController.text = 'password';
@@ -65,39 +58,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen>
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
-                success: (flag, firebaseUser, currentUser) {
-                  if (flag == AuthSuccessFlag.signUp) {
-                    _logger.i('AuthScreen: signUp: success');
-                    context.read<ContactBloc>().createContact(
-                          CreateContactDto(
-                            id: firebaseUser!.uid,
-                            name: _nameController.text.trim(),
-                            username: _usernameController.text.trim(),
-                          ),
-                        );
-                  }
-                  if (flag == AuthSuccessFlag.signIn ||
-                      flag == AuthSuccessFlag.signUp) {
-                    _logger.i('AuthScreen: signIn || signUp: success');
-                    context.read<AuthBloc>().setCurrentUser(firebaseUser!);
-                  }
-                  if (flag == AuthSuccessFlag.setCurrentUser) {
-                    _logger.i('AuthScreen: setCurrentUser: success');
-                    ref.read(currentUserProvider.notifier).state = currentUser;
-                    GoRouter.of(context).go('/app');
-                  }
-                },
                 loading: () => setState(() => _isLoading = true),
-                error: (e) {
-                  _logger.e(
-                      'AuthScreen: _AuthScreenState: build: error: ${e.toString()}');
-                  setState(() => _isLoading = false);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(e.description),
-                    ),
-                  );
-                },
                 orElse: () => setState(() => _isLoading = false),
               );
             },
@@ -150,6 +111,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen>
                                 _isSignUp
                                     ? context.read<AuthBloc>().signUp(
                                           SignUpDto(
+                                            name: _nameController.text.trim(),
                                             username:
                                                 _usernameController.text.trim(),
                                             password: _passwordController.text,
@@ -206,5 +168,6 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen>
   @override
   void onAuthenticated(User session) {
     ref.read(loggerProvider).d("AuthScreen: onAuthenticated");
+    GoRouter.of(context).go('/app');
   }
 }

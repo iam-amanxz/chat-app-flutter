@@ -16,42 +16,37 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContactEvent {
-  CreateContactDto get dto => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateContactDto dto) create,
+    required TResult Function() nothing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateContactDto dto)? create,
+    TResult Function()? nothing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateContactDto dto)? create,
+    TResult Function()? nothing,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ContactCreateEvent value) create,
+    required TResult Function(Nothing value) nothing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ContactCreateEvent value)? create,
+    TResult Function(Nothing value)? nothing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ContactCreateEvent value)? create,
+    TResult Function(Nothing value)? nothing,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ContactEventCopyWith<ContactEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,7 +55,6 @@ abstract class $ContactEventCopyWith<$Res> {
   factory $ContactEventCopyWith(
           ContactEvent value, $Res Function(ContactEvent) then) =
       _$ContactEventCopyWithImpl<$Res>;
-  $Res call({CreateContactDto dto});
 }
 
 /// @nodoc
@@ -70,109 +64,67 @@ class _$ContactEventCopyWithImpl<$Res> implements $ContactEventCopyWith<$Res> {
   final ContactEvent _value;
   // ignore: unused_field
   final $Res Function(ContactEvent) _then;
-
-  @override
-  $Res call({
-    Object? dto = freezed,
-  }) {
-    return _then(_value.copyWith(
-      dto: dto == freezed
-          ? _value.dto
-          : dto // ignore: cast_nullable_to_non_nullable
-              as CreateContactDto,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$$ContactCreateEventCopyWith<$Res>
-    implements $ContactEventCopyWith<$Res> {
-  factory _$$ContactCreateEventCopyWith(_$ContactCreateEvent value,
-          $Res Function(_$ContactCreateEvent) then) =
-      __$$ContactCreateEventCopyWithImpl<$Res>;
-  @override
-  $Res call({CreateContactDto dto});
+abstract class _$$NothingCopyWith<$Res> {
+  factory _$$NothingCopyWith(_$Nothing value, $Res Function(_$Nothing) then) =
+      __$$NothingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ContactCreateEventCopyWithImpl<$Res>
-    extends _$ContactEventCopyWithImpl<$Res>
-    implements _$$ContactCreateEventCopyWith<$Res> {
-  __$$ContactCreateEventCopyWithImpl(
-      _$ContactCreateEvent _value, $Res Function(_$ContactCreateEvent) _then)
-      : super(_value, (v) => _then(v as _$ContactCreateEvent));
+class __$$NothingCopyWithImpl<$Res> extends _$ContactEventCopyWithImpl<$Res>
+    implements _$$NothingCopyWith<$Res> {
+  __$$NothingCopyWithImpl(_$Nothing _value, $Res Function(_$Nothing) _then)
+      : super(_value, (v) => _then(v as _$Nothing));
 
   @override
-  _$ContactCreateEvent get _value => super._value as _$ContactCreateEvent;
-
-  @override
-  $Res call({
-    Object? dto = freezed,
-  }) {
-    return _then(_$ContactCreateEvent(
-      dto: dto == freezed
-          ? _value.dto
-          : dto // ignore: cast_nullable_to_non_nullable
-              as CreateContactDto,
-    ));
-  }
+  _$Nothing get _value => super._value as _$Nothing;
 }
 
 /// @nodoc
 
-class _$ContactCreateEvent implements ContactCreateEvent {
-  const _$ContactCreateEvent({required this.dto});
-
-  @override
-  final CreateContactDto dto;
+class _$Nothing implements Nothing {
+  const _$Nothing();
 
   @override
   String toString() {
-    return 'ContactEvent.create(dto: $dto)';
+    return 'ContactEvent.nothing()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ContactCreateEvent &&
-            const DeepCollectionEquality().equals(other.dto, dto));
+        (other.runtimeType == runtimeType && other is _$Nothing);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(dto));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$ContactCreateEventCopyWith<_$ContactCreateEvent> get copyWith =>
-      __$$ContactCreateEventCopyWithImpl<_$ContactCreateEvent>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateContactDto dto) create,
+    required TResult Function() nothing,
   }) {
-    return create(dto);
+    return nothing();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateContactDto dto)? create,
+    TResult Function()? nothing,
   }) {
-    return create?.call(dto);
+    return nothing?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateContactDto dto)? create,
+    TResult Function()? nothing,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create(dto);
+    if (nothing != null) {
+      return nothing();
     }
     return orElse();
   }
@@ -180,42 +132,34 @@ class _$ContactCreateEvent implements ContactCreateEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ContactCreateEvent value) create,
+    required TResult Function(Nothing value) nothing,
   }) {
-    return create(this);
+    return nothing(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ContactCreateEvent value)? create,
+    TResult Function(Nothing value)? nothing,
   }) {
-    return create?.call(this);
+    return nothing?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ContactCreateEvent value)? create,
+    TResult Function(Nothing value)? nothing,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create(this);
+    if (nothing != null) {
+      return nothing(this);
     }
     return orElse();
   }
 }
 
-abstract class ContactCreateEvent implements ContactEvent {
-  const factory ContactCreateEvent({required final CreateContactDto dto}) =
-      _$ContactCreateEvent;
-
-  @override
-  CreateContactDto get dto;
-  @override
-  @JsonKey(ignore: true)
-  _$$ContactCreateEventCopyWith<_$ContactCreateEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class Nothing implements ContactEvent {
+  const factory Nothing() = _$Nothing;
 }
 
 /// @nodoc

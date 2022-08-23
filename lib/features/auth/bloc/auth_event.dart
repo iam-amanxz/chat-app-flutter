@@ -4,6 +4,8 @@ part of 'auth_bloc.dart';
 class AuthEvent with _$AuthEvent {
   const factory AuthEvent.signIn({required SignInDto dto}) = AuthSignInEvent;
   const factory AuthEvent.signUp({required SignUpDto dto}) = AuthSignUpEvent;
+  const factory AuthEvent.createUser({required CreateUserDto dto}) =
+      AuthCreateUserEvent;
   const factory AuthEvent.setCurrentUser({required User firebaseUser}) =
       AuthSetCurrentUserEvent;
 }

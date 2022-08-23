@@ -1,10 +1,9 @@
+import 'package:chat_app/features/auth/current_user_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../config/di.dart';
 import '../../features/auth/auth_state.dart';
-import '../common/mixins.dart' as mix;
 
 class AppRootScreen extends ConsumerStatefulWidget {
   const AppRootScreen({Key? key}) : super(key: key);
@@ -13,8 +12,7 @@ class AppRootScreen extends ConsumerStatefulWidget {
   AuthRequiredState<AppRootScreen> createState() => _AppRootScreenState();
 }
 
-class _AppRootScreenState extends AuthRequiredState<AppRootScreen>
-    with mix.NotificationListener {
+class _AppRootScreenState extends AuthRequiredState<AppRootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +21,11 @@ class _AppRootScreenState extends AuthRequiredState<AppRootScreen>
       ),
       body: Column(
         children: [
-          Text('Signed in as ${ref.watch(currentUserProvider)?.name}'),
+          ref.watch(currentUserState).when(
+                data: (data) => Text(data?.username ?? ''),
+                error: (e, s) => Text(e.toString()),
+                loading: () => const CircularProgressIndicator(),
+              ),
           Center(
             child: ElevatedButton(
               onPressed: () {

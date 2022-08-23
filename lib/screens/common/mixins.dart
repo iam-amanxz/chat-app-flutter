@@ -1,3 +1,4 @@
+import 'package:chat_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,12 +11,12 @@ mixin NotificationListener<T extends ConsumerStatefulWidget>
   @override
   void initState() {
     super.initState();
-    _service = ref.read(notificationServiceProvider);
+    _service = ref.read(notificationProvider);
 
     _service.stream.listen((notification) {
-      ScaffoldMessenger.of(context).showSnackBar(
+      snackbarKey.currentState?.showSnackBar(
         SnackBar(
-          content: Text(notification.title ?? 'No title'),
+          content: Text(notification.message),
         ),
       );
     });
@@ -23,6 +24,7 @@ mixin NotificationListener<T extends ConsumerStatefulWidget>
 
   @override
   void dispose() {
+    ref.read(loggerProvider).d('NotificationListener: disposing stream');
     _service.dispose();
     super.dispose();
   }

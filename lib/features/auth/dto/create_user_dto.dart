@@ -1,8 +1,8 @@
-class CreateContactDto {
+class CreateUserDto {
   final String id;
   final String username;
   final String name;
-  CreateContactDto({
+  CreateUserDto({
     required this.id,
     required this.username,
     required this.name,

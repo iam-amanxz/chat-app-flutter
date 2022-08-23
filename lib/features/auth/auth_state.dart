@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chat_app/config/di.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,12 @@ abstract class FirebaseAuthState<T extends ConsumerStatefulWidget>
         } else {
           onAuthenticated(user);
         }
+      });
+
+      _authStateListener.onDone(() {
+        ref
+            .read(loggerProvider)
+            .d('FirebaseAuthState: _authStateListener done');
       });
     });
   }

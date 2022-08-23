@@ -20,6 +20,7 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$AuthEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$AuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     required TResult orElse(),
   }) =>
@@ -144,6 +150,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
   }) {
     return signIn(dto);
@@ -154,6 +161,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
   }) {
     return signIn?.call(dto);
@@ -164,6 +172,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -178,6 +187,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
   }) {
     return signIn(this);
@@ -188,6 +198,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
   }) {
     return signIn?.call(this);
@@ -198,6 +209,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -285,6 +297,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
   }) {
     return signUp(dto);
@@ -295,6 +308,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
   }) {
     return signUp?.call(dto);
@@ -305,6 +319,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -319,6 +334,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
   }) {
     return signUp(this);
@@ -329,6 +345,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
   }) {
     return signUp?.call(this);
@@ -339,6 +356,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -356,6 +374,154 @@ abstract class AuthSignUpEvent implements AuthEvent {
   SignUpDto get dto;
   @JsonKey(ignore: true)
   _$$AuthSignUpEventCopyWith<_$AuthSignUpEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthCreateUserEventCopyWith<$Res> {
+  factory _$$AuthCreateUserEventCopyWith(_$AuthCreateUserEvent value,
+          $Res Function(_$AuthCreateUserEvent) then) =
+      __$$AuthCreateUserEventCopyWithImpl<$Res>;
+  $Res call({CreateUserDto dto});
+}
+
+/// @nodoc
+class __$$AuthCreateUserEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$AuthCreateUserEventCopyWith<$Res> {
+  __$$AuthCreateUserEventCopyWithImpl(
+      _$AuthCreateUserEvent _value, $Res Function(_$AuthCreateUserEvent) _then)
+      : super(_value, (v) => _then(v as _$AuthCreateUserEvent));
+
+  @override
+  _$AuthCreateUserEvent get _value => super._value as _$AuthCreateUserEvent;
+
+  @override
+  $Res call({
+    Object? dto = freezed,
+  }) {
+    return _then(_$AuthCreateUserEvent(
+      dto: dto == freezed
+          ? _value.dto
+          : dto // ignore: cast_nullable_to_non_nullable
+              as CreateUserDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthCreateUserEvent implements AuthCreateUserEvent {
+  const _$AuthCreateUserEvent({required this.dto});
+
+  @override
+  final CreateUserDto dto;
+
+  @override
+  String toString() {
+    return 'AuthEvent.createUser(dto: $dto)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthCreateUserEvent &&
+            const DeepCollectionEquality().equals(other.dto, dto));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(dto));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$AuthCreateUserEventCopyWith<_$AuthCreateUserEvent> get copyWith =>
+      __$$AuthCreateUserEventCopyWithImpl<_$AuthCreateUserEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInDto dto) signIn,
+    required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
+    required TResult Function(User firebaseUser) setCurrentUser,
+  }) {
+    return createUser(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+  }) {
+    return createUser?.call(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    required TResult orElse(),
+  }) {
+    if (createUser != null) {
+      return createUser(dto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
+    required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+  }) {
+    return createUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+  }) {
+    return createUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    required TResult orElse(),
+  }) {
+    if (createUser != null) {
+      return createUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthCreateUserEvent implements AuthEvent {
+  const factory AuthCreateUserEvent({required final CreateUserDto dto}) =
+      _$AuthCreateUserEvent;
+
+  CreateUserDto get dto;
+  @JsonKey(ignore: true)
+  _$$AuthCreateUserEventCopyWith<_$AuthCreateUserEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -429,6 +595,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
   }) {
     return setCurrentUser(firebaseUser);
@@ -439,6 +606,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
   }) {
     return setCurrentUser?.call(firebaseUser);
@@ -449,6 +617,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -463,6 +632,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
   }) {
     return setCurrentUser(this);
@@ -473,6 +643,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
   }) {
     return setCurrentUser?.call(this);
@@ -483,6 +654,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     required TResult orElse(),
   }) {
@@ -509,9 +681,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)
-        success,
+    required TResult Function() success,
     required TResult Function(AuthException exception) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -519,9 +689,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -529,9 +697,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
     required TResult orElse(),
   }) =>
@@ -619,9 +785,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)
-        success,
+    required TResult Function() success,
     required TResult Function(AuthException exception) error,
   }) {
     return idle();
@@ -632,9 +796,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
   }) {
     return idle?.call();
@@ -645,9 +807,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
     required TResult orElse(),
   }) {
@@ -740,9 +900,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)
-        success,
+    required TResult Function() success,
     required TResult Function(AuthException exception) error,
   }) {
     return loading();
@@ -753,9 +911,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
   }) {
     return loading?.call();
@@ -766,9 +922,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
     required TResult orElse(),
   }) {
@@ -825,9 +979,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser});
-
-  $ContactCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -838,93 +989,36 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
-
-  @override
-  $Res call({
-    Object? flag = freezed,
-    Object? firebaseUser = freezed,
-    Object? currentUser = freezed,
-  }) {
-    return _then(_$_Success(
-      flag: flag == freezed
-          ? _value.flag
-          : flag // ignore: cast_nullable_to_non_nullable
-              as AuthSuccessFlag,
-      firebaseUser: firebaseUser == freezed
-          ? _value.firebaseUser
-          : firebaseUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      currentUser: currentUser == freezed
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as Contact?,
-    ));
-  }
-
-  @override
-  $ContactCopyWith<$Res>? get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
-
-    return $ContactCopyWith<$Res>(_value.currentUser!, (value) {
-      return _then(_value.copyWith(currentUser: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.flag, this.firebaseUser, this.currentUser});
-
-  @override
-  final AuthSuccessFlag flag;
-  @override
-  final User? firebaseUser;
-  @override
-  final Contact? currentUser;
+  const _$_Success();
 
   @override
   String toString() {
-    return 'AuthState.success(flag: $flag, firebaseUser: $firebaseUser, currentUser: $currentUser)';
+    return 'AuthState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other.flag, flag) &&
-            const DeepCollectionEquality()
-                .equals(other.firebaseUser, firebaseUser) &&
-            const DeepCollectionEquality()
-                .equals(other.currentUser, currentUser));
+        (other.runtimeType == runtimeType && other is _$_Success);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(flag),
-      const DeepCollectionEquality().hash(firebaseUser),
-      const DeepCollectionEquality().hash(currentUser));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)
-        success,
+    required TResult Function() success,
     required TResult Function(AuthException exception) error,
   }) {
-    return success(flag, firebaseUser, currentUser);
+    return success();
   }
 
   @override
@@ -932,12 +1026,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
   }) {
-    return success?.call(flag, firebaseUser, currentUser);
+    return success?.call();
   }
 
   @override
@@ -945,14 +1037,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(flag, firebaseUser, currentUser);
+      return success();
     }
     return orElse();
   }
@@ -996,17 +1086,7 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements AuthState {
-  const factory _Success(
-      {required final AuthSuccessFlag flag,
-      final User? firebaseUser,
-      final Contact? currentUser}) = _$_Success;
-
-  AuthSuccessFlag get flag;
-  User? get firebaseUser;
-  Contact? get currentUser;
-  @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Success() = _$_Success;
 }
 
 /// @nodoc
@@ -1073,9 +1153,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)
-        success,
+    required TResult Function() success,
     required TResult Function(AuthException exception) error,
   }) {
     return error(exception);
@@ -1086,9 +1164,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
   }) {
     return error?.call(exception);
@@ -1099,9 +1175,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            AuthSuccessFlag flag, User? firebaseUser, Contact? currentUser)?
-        success,
+    TResult Function()? success,
     TResult Function(AuthException exception)? error,
     required TResult orElse(),
   }) {

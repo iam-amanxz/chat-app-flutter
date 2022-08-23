@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:chat_app/features/auth/current_user_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 
 import '../config/di.dart';
 import '../features/auth/auth_state.dart';
-import '../features/contact/model/contact.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -43,10 +42,14 @@ class _SplashScreenState extends FirebaseAuthState<SplashScreen> {
   @override
   void onAuthenticated(User session) {
     ref.read(loggerProvider).d("SplashScreen: onAuthenticated");
-    ref.read(authServiceProvider).getCurrentUser(session).then((contact) {
+    ref.read(currentUserState.notifier).state = const AsyncValue.loading();
+    ref.read(authProvider).getCurrentUser(session).then((contact) {
       if (contact != null) {
-        ref.read(currentUserProvider.notifier).state = contact;
+        ref.read(currentUserState.notifier).state = AsyncValue.data(contact);
         GoRouter.of(context).go('/app');
+      } else {
+        ref.read(currentUserState.notifier).state =
+            const AsyncValue.error('Unable to fetch user');
       }
     });
   }

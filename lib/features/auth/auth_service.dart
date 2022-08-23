@@ -1,3 +1,4 @@
+import 'package:chat_app/features/auth/dto/create_user_dto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -6,7 +7,12 @@ import 'dto/sign_in_dto.dart';
 import 'dto/sign_up_dto.dart';
 
 class AuthService {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _db;
+
+  AuthService({required FirebaseAuth auth, required FirebaseFirestore db})
+      : _auth = auth,
+        _db = db;
 
   Future<UserCredential> signIn(SignInDto dto) async {
     final email = '${dto.username}@gmail.com';
@@ -35,5 +41,15 @@ class AuthService {
       return contact;
     }
     return null;
+  }
+
+  Future<void> createUser(CreateUserDto dto) async {
+    final ref = _db.collection('contacts').doc(dto.id);
+    final contact = Contact(
+      id: dto.id,
+      username: dto.username,
+      name: dto.name,
+    );
+    await ref.set(contact.toJson());
   }
 }

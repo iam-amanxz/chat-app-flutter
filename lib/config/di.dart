@@ -1,23 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 import '../features/auth/auth_service.dart';
 import '../features/contact/contact_service.dart';
-import '../features/contact/model/contact.dart';
 import '../features/notification/notification_service.dart';
 
-final currentUserProvider = StateProvider<Contact?>((ref) {
-  return null;
+final authProvider = Provider.autoDispose((ref) {
+  ref.onDispose(() {
+    ref.read(loggerProvider).d('authProvider: disposing');
+  });
+  return AuthService(
+    auth: FirebaseAuth.instance,
+    db: FirebaseFirestore.instance,
+  );
 });
-final authServiceProvider = Provider((ref) {
-  return AuthService();
+
+final contactProvider = Provider.autoDispose((ref) {
+  ref.onDispose(() {
+    ref.read(loggerProvider).d('contactProvider: disposing');
+  });
+  return ContactService(
+    db: FirebaseFirestore.instance,
+  );
 });
-final contactServiceProvider = Provider((ref) {
-  return ContactService();
+
+final notificationProvider = Provider((ref) {
+  ref.onDispose(() {
+    ref.read(loggerProvider).d('notificationProvider: disposing');
+  });
+  return NotificationService(logger: ref.read(loggerProvider));
 });
-final notificationServiceProvider = Provider((ref) {
-  return NotificationService();
-});
+
 final loggerProvider = Provider((ref) {
+  ref.onDispose(() {
+    print('loggerProvider: disposing');
+  });
   return Logger(printer: PrettyPrinter());
 });

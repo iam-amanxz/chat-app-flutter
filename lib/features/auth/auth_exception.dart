@@ -30,6 +30,9 @@ class AuthException {
   const AuthException.wrongPassword()
       : title = 'Wrong password',
         description = 'Please enter the valid password';
+  const AuthException.userCreateFailed()
+      : title = 'Error',
+        description = 'User creation failed';
 
   factory AuthException.fromFirebase(FirebaseAuthException exception) =>
       firebaseAuthErrorMapping[exception.code] ?? const AuthException.unknown();
