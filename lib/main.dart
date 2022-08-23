@@ -1,10 +1,10 @@
-import 'package:chat_app/config/di.dart';
-import 'package:chat_app/screens/common/mixins.dart' as mix;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'common/mixins/notification_listener.dart' as mix;
+import 'config/di.dart';
 import 'config/firebase_options.dart';
 import 'config/router.dart';
 import 'config/theme.dart';

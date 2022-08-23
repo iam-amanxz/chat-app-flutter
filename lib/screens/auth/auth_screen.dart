@@ -1,16 +1,17 @@
-import 'package:chat_app/config/di.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../common/styles/form_styles.dart';
+import '../../common/styles/text_styles.dart';
+import '../../common/validations/auth_validations.dart';
+import '../../config/di.dart';
 import '../../features/auth/auth_state.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/auth/dto/sign_in_dto.dart';
 import '../../features/auth/dto/sign_up_dto.dart';
-import '../common/styles.dart';
-import '../common/validations.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
