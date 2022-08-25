@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:chat_app/features/auth/current_user_state.dart';
+import 'package:chat_app/features/contact/model/contact.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 import '../../../features/auth/auth_exception.dart';
@@ -33,6 +35,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignUpEvent>(_onSignUp);
     on<AuthCreateUserEvent>(_onCreateUser);
     on<AuthSetCurrentUserEvent>(_onSetCurrentUser);
+    on<AuthUpdateCurrentUserEvent>(_onUpdateCurrentUser);
+    on<AuthUpdateProfilePhotoEvent>(_onUpdateProfilePhoto);
   }
   Future<void> _onSignUp(AuthSignUpEvent event, Emitter<AuthState> emit) async {
     logger.d('AuthBloc: _onSignUp');
@@ -122,9 +126,61 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
+  Future<void> _onUpdateCurrentUser(
+      AuthUpdateCurrentUserEvent event, Emitter<AuthState> emit) async {
+    logger.d('AuthBloc: _onUpdateCurrentUser');
+    emit(const AuthState.loading());
+
+    try {
+      final user = await auth.updateUser(event.user);
+      if (user == null) {
+        reader(currentUserState.notifier).state =
+            const AsyncValue.error('User not found');
+        throw 'User not found';
+      }
+
+      emit(const AuthState.success());
+      notification.add(Notification.userUpdated());
+      logger.i('AuthBloc: _onUpdateCurrentUser : success');
+      reader(currentUserState.notifier).state = AsyncValue.data(user);
+    } catch (e) {
+      if (e == 'User not found') {
+        notification.add(Notification.userNotFound());
+      }
+      emit(const AuthState.error(AuthException.unknown()));
+      notification.add(Notification.userUpdateFailed());
+      logger.e('AuthBloc: _onUpdateCurrentUser : error : ${e.toString()}');
+    }
+  }
+
+  Future<void> _onUpdateProfilePhoto(
+      AuthUpdateProfilePhotoEvent event, Emitter<AuthState> emit) async {
+    logger.d('AuthBloc: _onUpdateProfilePhoto');
+    emit(const AuthState.loading());
+
+    try {
+      final downloadUrl = await auth.uploadProfilePhoto(event.image);
+      final currentUser = reader(currentUserState).asData!.value;
+      final newUser = currentUser!.copyWith(photoUrl: downloadUrl);
+      final user = await auth.updateUser(newUser);
+      reader(currentUserState.notifier).state = AsyncValue.data(user);
+      emit(const AuthState.success());
+      notification.add(Notification.profilePhotoUpdated());
+      logger.i('AuthBloc: _onUpdateProfilePhoto : success');
+    } catch (e) {
+      emit(const AuthState.error(AuthException.unknown()));
+      notification.add(Notification.profilePhotoUpdateFailed());
+      logger.e('AuthBloc: _onUpdateCurrentUser : error : ${e.toString()}');
+    }
+  }
+
   void signUp(SignUpDto dto) => add(AuthEvent.signUp(dto: dto));
   void signIn(SignInDto dto) => add(AuthEvent.signIn(dto: dto));
   void createUser(CreateUserDto dto) => add(AuthEvent.createUser(dto: dto));
   void setCurrentUser(User firebaseUser) =>
       add(AuthEvent.setCurrentUser(firebaseUser: firebaseUser));
+  void updateCurrentUser(Contact user) =>
+      add(AuthEvent.updateCurrentUser(user: user));
+  void updateProfilePhoto(XFile image) =>
+      add(AuthEvent.updateProfilePhoto(image: image));
 }

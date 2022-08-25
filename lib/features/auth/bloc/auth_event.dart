@@ -8,4 +8,8 @@ class AuthEvent with _$AuthEvent {
       AuthCreateUserEvent;
   const factory AuthEvent.setCurrentUser({required User firebaseUser}) =
       AuthSetCurrentUserEvent;
+  const factory AuthEvent.updateCurrentUser({required Contact user}) =
+      AuthUpdateCurrentUserEvent;
+  const factory AuthEvent.updateProfilePhoto({required XFile image}) =
+      AuthUpdateProfilePhotoEvent;
 }

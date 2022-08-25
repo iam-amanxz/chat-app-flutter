@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
@@ -14,6 +15,7 @@ final authProvider = Provider.autoDispose((ref) {
   return AuthService(
     auth: FirebaseAuth.instance,
     db: FirebaseFirestore.instance,
+    storage: FirebaseStorage.instance,
   );
 });
 

@@ -148,7 +148,8 @@ class _$_Contact implements _Contact {
       required this.username,
       this.name,
       this.about,
-      this.photoUrl});
+      this.photoUrl =
+          'https://firebasestorage.googleapis.com/v0/b/amanxz-social-media-app.appspot.com/o/default-avatar.jpg?alt=media&token=cb425243-0f53-49fe-a7a9-d935a4ba7339'});
 
   factory _$_Contact.fromJson(Map<String, dynamic> json) =>
       _$$_ContactFromJson(json);
@@ -162,6 +163,7 @@ class _$_Contact implements _Contact {
   @override
   final String? about;
   @override
+  @JsonKey()
   final String? photoUrl;
 
   @override

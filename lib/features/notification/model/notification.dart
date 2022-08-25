@@ -15,6 +15,14 @@ class Notification {
       : type = NotificationType.success,
         title = 'Success',
         message = 'Registered successfully';
+  Notification.userUpdated()
+      : type = NotificationType.success,
+        title = 'Success',
+        message = 'Profile updated successfully';
+  Notification.profilePhotoUpdated()
+      : type = NotificationType.success,
+        title = 'Success',
+        message = 'Profile photo updated successfully';
 
   Notification.genericError()
       : type = NotificationType.error,
@@ -40,4 +48,12 @@ class Notification {
       : type = NotificationType.error,
         title = 'Error',
         message = "Couldn't create user";
+  Notification.userUpdateFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't update user";
+  Notification.profilePhotoUpdateFailed()
+      : type = NotificationType.success,
+        title = 'Error',
+        message = "Couldn't update photo";
 }

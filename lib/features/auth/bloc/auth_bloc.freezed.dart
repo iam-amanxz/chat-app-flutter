@@ -22,6 +22,8 @@ mixin _$AuthEvent {
     required TResult Function(SignUpDto dto) signUp,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,8 @@ mixin _$AuthEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,8 @@ mixin _$AuthEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +53,10 @@ mixin _$AuthEvent {
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +65,8 @@ mixin _$AuthEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +75,8 @@ mixin _$AuthEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -152,6 +166,8 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     required TResult Function(SignUpDto dto) signUp,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
   }) {
     return signIn(dto);
   }
@@ -163,6 +179,8 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
   }) {
     return signIn?.call(dto);
   }
@@ -174,6 +192,8 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -189,6 +209,10 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
   }) {
     return signIn(this);
   }
@@ -200,6 +224,8 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
   }) {
     return signIn?.call(this);
   }
@@ -211,6 +237,8 @@ class _$AuthSignInEvent implements AuthSignInEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -299,6 +327,8 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     required TResult Function(SignUpDto dto) signUp,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
   }) {
     return signUp(dto);
   }
@@ -310,6 +340,8 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
   }) {
     return signUp?.call(dto);
   }
@@ -321,6 +353,8 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -336,6 +370,10 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
   }) {
     return signUp(this);
   }
@@ -347,6 +385,8 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
   }) {
     return signUp?.call(this);
   }
@@ -358,6 +398,8 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -447,6 +489,8 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     required TResult Function(SignUpDto dto) signUp,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
   }) {
     return createUser(dto);
   }
@@ -458,6 +502,8 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
   }) {
     return createUser?.call(dto);
   }
@@ -469,6 +515,8 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -484,6 +532,10 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
   }) {
     return createUser(this);
   }
@@ -495,6 +547,8 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
   }) {
     return createUser?.call(this);
   }
@@ -506,6 +560,8 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -597,6 +653,8 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     required TResult Function(SignUpDto dto) signUp,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
   }) {
     return setCurrentUser(firebaseUser);
   }
@@ -608,6 +666,8 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
   }) {
     return setCurrentUser?.call(firebaseUser);
   }
@@ -619,6 +679,8 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     TResult Function(SignUpDto dto)? signUp,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (setCurrentUser != null) {
@@ -634,6 +696,10 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
   }) {
     return setCurrentUser(this);
   }
@@ -645,6 +711,8 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
   }) {
     return setCurrentUser?.call(this);
   }
@@ -656,6 +724,8 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
     required TResult orElse(),
   }) {
     if (setCurrentUser != null) {
@@ -673,6 +743,345 @@ abstract class AuthSetCurrentUserEvent implements AuthEvent {
   @JsonKey(ignore: true)
   _$$AuthSetCurrentUserEventCopyWith<_$AuthSetCurrentUserEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthUpdateCurrentUserEventCopyWith<$Res> {
+  factory _$$AuthUpdateCurrentUserEventCopyWith(
+          _$AuthUpdateCurrentUserEvent value,
+          $Res Function(_$AuthUpdateCurrentUserEvent) then) =
+      __$$AuthUpdateCurrentUserEventCopyWithImpl<$Res>;
+  $Res call({Contact user});
+
+  $ContactCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$AuthUpdateCurrentUserEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$AuthUpdateCurrentUserEventCopyWith<$Res> {
+  __$$AuthUpdateCurrentUserEventCopyWithImpl(
+      _$AuthUpdateCurrentUserEvent _value,
+      $Res Function(_$AuthUpdateCurrentUserEvent) _then)
+      : super(_value, (v) => _then(v as _$AuthUpdateCurrentUserEvent));
+
+  @override
+  _$AuthUpdateCurrentUserEvent get _value =>
+      super._value as _$AuthUpdateCurrentUserEvent;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$AuthUpdateCurrentUserEvent(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as Contact,
+    ));
+  }
+
+  @override
+  $ContactCopyWith<$Res> get user {
+    return $ContactCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
+  const _$AuthUpdateCurrentUserEvent({required this.user});
+
+  @override
+  final Contact user;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updateCurrentUser(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthUpdateCurrentUserEvent &&
+            const DeepCollectionEquality().equals(other.user, user));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$AuthUpdateCurrentUserEventCopyWith<_$AuthUpdateCurrentUserEvent>
+      get copyWith => __$$AuthUpdateCurrentUserEventCopyWithImpl<
+          _$AuthUpdateCurrentUserEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInDto dto) signIn,
+    required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
+    required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
+  }) {
+    return updateCurrentUser(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+  }) {
+    return updateCurrentUser?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateCurrentUser != null) {
+      return updateCurrentUser(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
+    required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
+  }) {
+    return updateCurrentUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+  }) {
+    return updateCurrentUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateCurrentUser != null) {
+      return updateCurrentUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthUpdateCurrentUserEvent implements AuthEvent {
+  const factory AuthUpdateCurrentUserEvent({required final Contact user}) =
+      _$AuthUpdateCurrentUserEvent;
+
+  Contact get user;
+  @JsonKey(ignore: true)
+  _$$AuthUpdateCurrentUserEventCopyWith<_$AuthUpdateCurrentUserEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthUpdateProfilePhotoEventCopyWith<$Res> {
+  factory _$$AuthUpdateProfilePhotoEventCopyWith(
+          _$AuthUpdateProfilePhotoEvent value,
+          $Res Function(_$AuthUpdateProfilePhotoEvent) then) =
+      __$$AuthUpdateProfilePhotoEventCopyWithImpl<$Res>;
+  $Res call({XFile image});
+}
+
+/// @nodoc
+class __$$AuthUpdateProfilePhotoEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$AuthUpdateProfilePhotoEventCopyWith<$Res> {
+  __$$AuthUpdateProfilePhotoEventCopyWithImpl(
+      _$AuthUpdateProfilePhotoEvent _value,
+      $Res Function(_$AuthUpdateProfilePhotoEvent) _then)
+      : super(_value, (v) => _then(v as _$AuthUpdateProfilePhotoEvent));
+
+  @override
+  _$AuthUpdateProfilePhotoEvent get _value =>
+      super._value as _$AuthUpdateProfilePhotoEvent;
+
+  @override
+  $Res call({
+    Object? image = freezed,
+  }) {
+    return _then(_$AuthUpdateProfilePhotoEvent(
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as XFile,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
+  const _$AuthUpdateProfilePhotoEvent({required this.image});
+
+  @override
+  final XFile image;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updateProfilePhoto(image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthUpdateProfilePhotoEvent &&
+            const DeepCollectionEquality().equals(other.image, image));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$AuthUpdateProfilePhotoEventCopyWith<_$AuthUpdateProfilePhotoEvent>
+      get copyWith => __$$AuthUpdateProfilePhotoEventCopyWithImpl<
+          _$AuthUpdateProfilePhotoEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInDto dto) signIn,
+    required TResult Function(SignUpDto dto) signUp,
+    required TResult Function(CreateUserDto dto) createUser,
+    required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
+  }) {
+    return updateProfilePhoto(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+  }) {
+    return updateProfilePhoto?.call(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateProfilePhoto != null) {
+      return updateProfilePhoto(image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthCreateUserEvent value) createUser,
+    required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
+  }) {
+    return updateProfilePhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+  }) {
+    return updateProfilePhoto?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateProfilePhoto != null) {
+      return updateProfilePhoto(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthUpdateProfilePhotoEvent implements AuthEvent {
+  const factory AuthUpdateProfilePhotoEvent({required final XFile image}) =
+      _$AuthUpdateProfilePhotoEvent;
+
+  XFile get image;
+  @JsonKey(ignore: true)
+  _$$AuthUpdateProfilePhotoEventCopyWith<_$AuthUpdateProfilePhotoEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

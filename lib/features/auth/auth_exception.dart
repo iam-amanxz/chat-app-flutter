@@ -33,6 +33,9 @@ class AuthException {
   const AuthException.userCreateFailed()
       : title = 'Error',
         description = 'User creation failed';
+  const AuthException.userUpdateFailed()
+      : title = 'Error',
+        description = 'User update failed';
 
   factory AuthException.fromFirebase(FirebaseAuthException exception) =>
       firebaseAuthErrorMapping[exception.code] ?? const AuthException.unknown();
