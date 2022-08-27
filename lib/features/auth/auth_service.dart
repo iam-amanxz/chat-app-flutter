@@ -43,6 +43,10 @@ class AuthService {
     return credentials;
   }
 
+  Future<void> signOut() async {
+    return await _auth.signOut();
+  }
+
   Future<Contact?> getCurrentUser(User user) async {
     final ref = FirebaseFirestore.instance.collection('contacts').doc(user.uid);
     final doc = await ref.get();

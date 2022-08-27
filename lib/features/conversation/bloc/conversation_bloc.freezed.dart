@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'contact_bloc.dart';
+part of 'conversation_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,90 +15,92 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ContactEvent {
+mixin _$ConversationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadContacts,
+    required TResult Function() loadConversations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadContacts,
+    TResult Function()? loadConversations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadContacts,
+    TResult Function()? loadConversations,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadContactsEvent value) loadContacts,
+    required TResult Function(LoadConversationsEvent value) loadConversations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadContactsEvent value)? loadContacts,
+    TResult Function(LoadConversationsEvent value)? loadConversations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadContactsEvent value)? loadContacts,
+    TResult Function(LoadConversationsEvent value)? loadConversations,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ContactEventCopyWith<$Res> {
-  factory $ContactEventCopyWith(
-          ContactEvent value, $Res Function(ContactEvent) then) =
-      _$ContactEventCopyWithImpl<$Res>;
+abstract class $ConversationEventCopyWith<$Res> {
+  factory $ConversationEventCopyWith(
+          ConversationEvent value, $Res Function(ConversationEvent) then) =
+      _$ConversationEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ContactEventCopyWithImpl<$Res> implements $ContactEventCopyWith<$Res> {
-  _$ContactEventCopyWithImpl(this._value, this._then);
+class _$ConversationEventCopyWithImpl<$Res>
+    implements $ConversationEventCopyWith<$Res> {
+  _$ConversationEventCopyWithImpl(this._value, this._then);
 
-  final ContactEvent _value;
+  final ConversationEvent _value;
   // ignore: unused_field
-  final $Res Function(ContactEvent) _then;
+  final $Res Function(ConversationEvent) _then;
 }
 
 /// @nodoc
-abstract class _$$LoadContactsEventCopyWith<$Res> {
-  factory _$$LoadContactsEventCopyWith(
-          _$LoadContactsEvent value, $Res Function(_$LoadContactsEvent) then) =
-      __$$LoadContactsEventCopyWithImpl<$Res>;
+abstract class _$$LoadConversationsEventCopyWith<$Res> {
+  factory _$$LoadConversationsEventCopyWith(_$LoadConversationsEvent value,
+          $Res Function(_$LoadConversationsEvent) then) =
+      __$$LoadConversationsEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadContactsEventCopyWithImpl<$Res>
-    extends _$ContactEventCopyWithImpl<$Res>
-    implements _$$LoadContactsEventCopyWith<$Res> {
-  __$$LoadContactsEventCopyWithImpl(
-      _$LoadContactsEvent _value, $Res Function(_$LoadContactsEvent) _then)
-      : super(_value, (v) => _then(v as _$LoadContactsEvent));
+class __$$LoadConversationsEventCopyWithImpl<$Res>
+    extends _$ConversationEventCopyWithImpl<$Res>
+    implements _$$LoadConversationsEventCopyWith<$Res> {
+  __$$LoadConversationsEventCopyWithImpl(_$LoadConversationsEvent _value,
+      $Res Function(_$LoadConversationsEvent) _then)
+      : super(_value, (v) => _then(v as _$LoadConversationsEvent));
 
   @override
-  _$LoadContactsEvent get _value => super._value as _$LoadContactsEvent;
+  _$LoadConversationsEvent get _value =>
+      super._value as _$LoadConversationsEvent;
 }
 
 /// @nodoc
 
-class _$LoadContactsEvent implements LoadContactsEvent {
-  const _$LoadContactsEvent();
+class _$LoadConversationsEvent implements LoadConversationsEvent {
+  const _$LoadConversationsEvent();
 
   @override
   String toString() {
-    return 'ContactEvent.loadContacts()';
+    return 'ConversationEvent.loadConversations()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadContactsEvent);
+        (other.runtimeType == runtimeType && other is _$LoadConversationsEvent);
   }
 
   @override
@@ -107,27 +109,27 @@ class _$LoadContactsEvent implements LoadContactsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadContacts,
+    required TResult Function() loadConversations,
   }) {
-    return loadContacts();
+    return loadConversations();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadContacts,
+    TResult Function()? loadConversations,
   }) {
-    return loadContacts?.call();
+    return loadConversations?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadContacts,
+    TResult Function()? loadConversations,
     required TResult orElse(),
   }) {
-    if (loadContacts != null) {
-      return loadContacts();
+    if (loadConversations != null) {
+      return loadConversations();
     }
     return orElse();
   }
@@ -135,44 +137,44 @@ class _$LoadContactsEvent implements LoadContactsEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadContactsEvent value) loadContacts,
+    required TResult Function(LoadConversationsEvent value) loadConversations,
   }) {
-    return loadContacts(this);
+    return loadConversations(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadContactsEvent value)? loadContacts,
+    TResult Function(LoadConversationsEvent value)? loadConversations,
   }) {
-    return loadContacts?.call(this);
+    return loadConversations?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadContactsEvent value)? loadContacts,
+    TResult Function(LoadConversationsEvent value)? loadConversations,
     required TResult orElse(),
   }) {
-    if (loadContacts != null) {
-      return loadContacts(this);
+    if (loadConversations != null) {
+      return loadConversations(this);
     }
     return orElse();
   }
 }
 
-abstract class LoadContactsEvent implements ContactEvent {
-  const factory LoadContactsEvent() = _$LoadContactsEvent;
+abstract class LoadConversationsEvent implements ConversationEvent {
+  const factory LoadConversationsEvent() = _$LoadConversationsEvent;
 }
 
 /// @nodoc
-mixin _$ContactState {
+mixin _$ConversationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ContactException exception) error,
+    required TResult Function(ConversationException exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -180,7 +182,7 @@ mixin _$ContactState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -188,7 +190,7 @@ mixin _$ContactState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -220,19 +222,20 @@ mixin _$ContactState {
 }
 
 /// @nodoc
-abstract class $ContactStateCopyWith<$Res> {
-  factory $ContactStateCopyWith(
-          ContactState value, $Res Function(ContactState) then) =
-      _$ContactStateCopyWithImpl<$Res>;
+abstract class $ConversationStateCopyWith<$Res> {
+  factory $ConversationStateCopyWith(
+          ConversationState value, $Res Function(ConversationState) then) =
+      _$ConversationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ContactStateCopyWithImpl<$Res> implements $ContactStateCopyWith<$Res> {
-  _$ContactStateCopyWithImpl(this._value, this._then);
+class _$ConversationStateCopyWithImpl<$Res>
+    implements $ConversationStateCopyWith<$Res> {
+  _$ConversationStateCopyWithImpl(this._value, this._then);
 
-  final ContactState _value;
+  final ConversationState _value;
   // ignore: unused_field
-  final $Res Function(ContactState) _then;
+  final $Res Function(ConversationState) _then;
 }
 
 /// @nodoc
@@ -243,7 +246,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$ContactStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$ConversationStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -259,7 +263,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ContactState.idle()';
+    return 'ConversationState.idle()';
   }
 
   @override
@@ -277,7 +281,7 @@ class _$_Initial implements _Initial {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ContactException exception) error,
+    required TResult Function(ConversationException exception) error,
   }) {
     return idle();
   }
@@ -288,7 +292,7 @@ class _$_Initial implements _Initial {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
   }) {
     return idle?.call();
   }
@@ -299,7 +303,7 @@ class _$_Initial implements _Initial {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -346,7 +350,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ContactState {
+abstract class _Initial implements ConversationState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -358,7 +362,8 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$ContactStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$ConversationStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -374,7 +379,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'ContactState.loading()';
+    return 'ConversationState.loading()';
   }
 
   @override
@@ -392,7 +397,7 @@ class _$_Loading implements _Loading {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ContactException exception) error,
+    required TResult Function(ConversationException exception) error,
   }) {
     return loading();
   }
@@ -403,7 +408,7 @@ class _$_Loading implements _Loading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
   }) {
     return loading?.call();
   }
@@ -414,7 +419,7 @@ class _$_Loading implements _Loading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -461,7 +466,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements ContactState {
+abstract class _Loading implements ConversationState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -473,7 +478,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$ContactStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$ConversationStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -489,7 +495,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'ContactState.success()';
+    return 'ConversationState.success()';
   }
 
   @override
@@ -507,7 +513,7 @@ class _$_Success implements _Success {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ContactException exception) error,
+    required TResult Function(ConversationException exception) error,
   }) {
     return success();
   }
@@ -518,7 +524,7 @@ class _$_Success implements _Success {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
   }) {
     return success?.call();
   }
@@ -529,7 +535,7 @@ class _$_Success implements _Success {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -576,7 +582,7 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements ContactState {
+abstract class _Success implements ConversationState {
   const factory _Success() = _$_Success;
 }
 
@@ -584,11 +590,11 @@ abstract class _Success implements ContactState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  $Res call({ContactException exception});
+  $Res call({ConversationException exception});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$ContactStateCopyWithImpl<$Res>
+class __$$_ErrorCopyWithImpl<$Res> extends _$ConversationStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, (v) => _then(v as _$_Error));
@@ -604,7 +610,7 @@ class __$$_ErrorCopyWithImpl<$Res> extends _$ContactStateCopyWithImpl<$Res>
       exception == freezed
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
-              as ContactException,
+              as ConversationException,
     ));
   }
 }
@@ -615,11 +621,11 @@ class _$_Error implements _Error {
   const _$_Error(this.exception);
 
   @override
-  final ContactException exception;
+  final ConversationException exception;
 
   @override
   String toString() {
-    return 'ContactState.error(exception: $exception)';
+    return 'ConversationState.error(exception: $exception)';
   }
 
   @override
@@ -645,7 +651,7 @@ class _$_Error implements _Error {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ContactException exception) error,
+    required TResult Function(ConversationException exception) error,
   }) {
     return error(exception);
   }
@@ -656,7 +662,7 @@ class _$_Error implements _Error {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
   }) {
     return error?.call(exception);
   }
@@ -667,7 +673,7 @@ class _$_Error implements _Error {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ContactException exception)? error,
+    TResult Function(ConversationException exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -714,10 +720,10 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements ContactState {
-  const factory _Error(final ContactException exception) = _$_Error;
+abstract class _Error implements ConversationState {
+  const factory _Error(final ConversationException exception) = _$_Error;
 
-  ContactException get exception;
+  ConversationException get exception;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;

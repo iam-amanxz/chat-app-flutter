@@ -40,6 +40,10 @@ class Notification {
       : type = NotificationType.error,
         title = 'Sign in failed',
         message = message ?? 'Something went wrong';
+  Notification.signOutFailed([String? message])
+      : type = NotificationType.error,
+        title = 'Sign out failed',
+        message = message ?? 'Something went wrong';
   Notification.userNotFound()
       : type = NotificationType.error,
         title = 'Auth Error',
@@ -53,7 +57,15 @@ class Notification {
         title = 'Error',
         message = "Couldn't update user";
   Notification.profilePhotoUpdateFailed()
-      : type = NotificationType.success,
+      : type = NotificationType.error,
         title = 'Error',
         message = "Couldn't update photo";
+  Notification.loadContactsFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't load contacts";
+  Notification.loadConversationsFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't load conversations";
 }

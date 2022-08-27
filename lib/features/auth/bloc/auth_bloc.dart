@@ -33,6 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) : super(const AuthState.idle()) {
     on<AuthSignInEvent>(_onSignIn);
     on<AuthSignUpEvent>(_onSignUp);
+    on<AuthSignOutEvent>(_onSignOut);
     on<AuthCreateUserEvent>(_onCreateUser);
     on<AuthSetCurrentUserEvent>(_onSetCurrentUser);
     on<AuthUpdateCurrentUserEvent>(_onUpdateCurrentUser);
@@ -82,6 +83,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthState.error(AuthException.unknown()));
       notification.add(Notification.signInFailed());
       logger.e('AuthBloc: _onSignIn : error : ${e.toString()}');
+    }
+  }
+
+  Future<void> _onSignOut(
+      AuthSignOutEvent event, Emitter<AuthState> emit) async {
+    logger.d('AuthBloc: _onSignOut');
+    emit(const AuthState.loading());
+    try {
+      await auth.signOut();
+      emit(const AuthState.success());
+      logger.i('AuthBloc: _onSignOut : success');
+      reader(currentUserState.notifier).state = const AsyncValue.data(null);
+    } catch (e) {
+      emit(const AuthState.error(AuthException.unknown()));
+      notification.add(Notification.signOutFailed());
+      logger.e('AuthBloc: _onSignOut : error : ${e.toString()}');
     }
   }
 
@@ -176,6 +193,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void signUp(SignUpDto dto) => add(AuthEvent.signUp(dto: dto));
   void signIn(SignInDto dto) => add(AuthEvent.signIn(dto: dto));
+  void signOut() => add(const AuthEvent.signOut());
   void createUser(CreateUserDto dto) => add(AuthEvent.createUser(dto: dto));
   void setCurrentUser(User firebaseUser) =>
       add(AuthEvent.setCurrentUser(firebaseUser: firebaseUser));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../common/styles/form_styles.dart';
@@ -39,10 +40,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ref.watch(currentUserState).when(data: (Contact? user) {
           if (user == null) {
-            return const Center(child: Text('User is null'));
+            GoRouter.of(context).go('/auth');
+            return Container();
           }
 
           setState(() {
@@ -64,6 +66,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
             },
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().signOut();
+                    },
+                    icon: const Icon(Icons.power_settings_new),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: CircleAvatar(

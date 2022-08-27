@@ -1,10 +1,9 @@
-import 'package:chat_app/features/auth/current_user_state.dart';
-import 'package:chat_app/screens/profile/profile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/auth_state.dart';
+import '../conversations/conversations_screen.dart';
+import '../profile/profile_screen.dart';
 
 class AppRootScreen extends ConsumerStatefulWidget {
   const AppRootScreen({Key? key}) : super(key: key);
@@ -14,21 +13,21 @@ class AppRootScreen extends ConsumerStatefulWidget {
 }
 
 class _AppRootScreenState extends AuthRequiredState<AppRootScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   late final PageController _pageController;
 
   final List<Widget> _screens = const [
-    Text('Hello'),
+    ConversationsScreen(),
     ProfileScreen(),
   ];
 
   static const _navItems = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.group),
-      label: 'Hello',
+      icon: Icon(Icons.message),
+      label: 'Conversations',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.group),
+      icon: Icon(Icons.person),
       label: 'Profile',
     ),
   ];

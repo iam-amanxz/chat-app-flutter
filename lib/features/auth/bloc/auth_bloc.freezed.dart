@@ -20,6 +20,7 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -30,6 +31,7 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -40,6 +42,7 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -51,6 +54,7 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -63,6 +67,7 @@ mixin _$AuthEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -73,6 +78,7 @@ mixin _$AuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -164,6 +170,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -177,6 +184,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -190,6 +198,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -207,6 +216,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -222,6 +232,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -235,6 +246,7 @@ class _$AuthSignInEvent implements AuthSignInEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -325,6 +337,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -338,6 +351,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -351,6 +365,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -368,6 +383,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -383,6 +399,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -396,6 +413,7 @@ class _$AuthSignUpEvent implements AuthSignUpEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -417,6 +435,143 @@ abstract class AuthSignUpEvent implements AuthEvent {
   @JsonKey(ignore: true)
   _$$AuthSignUpEventCopyWith<_$AuthSignUpEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthSignOutEventCopyWith<$Res> {
+  factory _$$AuthSignOutEventCopyWith(
+          _$AuthSignOutEvent value, $Res Function(_$AuthSignOutEvent) then) =
+      __$$AuthSignOutEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthSignOutEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$AuthSignOutEventCopyWith<$Res> {
+  __$$AuthSignOutEventCopyWithImpl(
+      _$AuthSignOutEvent _value, $Res Function(_$AuthSignOutEvent) _then)
+      : super(_value, (v) => _then(v as _$AuthSignOutEvent));
+
+  @override
+  _$AuthSignOutEvent get _value => super._value as _$AuthSignOutEvent;
+}
+
+/// @nodoc
+
+class _$AuthSignOutEvent implements AuthSignOutEvent {
+  const _$AuthSignOutEvent();
+
+  @override
+  String toString() {
+    return 'AuthEvent.signOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthSignOutEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInDto dto) signIn,
+    required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
+    required TResult Function(CreateUserDto dto) createUser,
+    required TResult Function(User firebaseUser) setCurrentUser,
+    required TResult Function(Contact user) updateCurrentUser,
+    required TResult Function(XFile image) updateProfilePhoto,
+  }) {
+    return signOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+  }) {
+    return signOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInDto dto)? signIn,
+    TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
+    TResult Function(CreateUserDto dto)? createUser,
+    TResult Function(User firebaseUser)? setCurrentUser,
+    TResult Function(Contact user)? updateCurrentUser,
+    TResult Function(XFile image)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (signOut != null) {
+      return signOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(AuthCreateUserEvent value) createUser,
+    required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
+    required TResult Function(AuthUpdateCurrentUserEvent value)
+        updateCurrentUser,
+    required TResult Function(AuthUpdateProfilePhotoEvent value)
+        updateProfilePhoto,
+  }) {
+    return signOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+  }) {
+    return signOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(AuthCreateUserEvent value)? createUser,
+    TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
+    TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
+    TResult Function(AuthUpdateProfilePhotoEvent value)? updateProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (signOut != null) {
+      return signOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthSignOutEvent implements AuthEvent {
+  const factory AuthSignOutEvent() = _$AuthSignOutEvent;
 }
 
 /// @nodoc
@@ -487,6 +642,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -500,6 +656,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -513,6 +670,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -530,6 +688,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -545,6 +704,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -558,6 +718,7 @@ class _$AuthCreateUserEvent implements AuthCreateUserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -651,6 +812,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -664,6 +826,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -677,6 +840,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -694,6 +858,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -709,6 +874,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -722,6 +888,7 @@ class _$AuthSetCurrentUserEvent implements AuthSetCurrentUserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -825,6 +992,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -838,6 +1006,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -851,6 +1020,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -868,6 +1038,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -883,6 +1054,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -896,6 +1068,7 @@ class _$AuthUpdateCurrentUserEvent implements AuthUpdateCurrentUserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -990,6 +1163,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInDto dto) signIn,
     required TResult Function(SignUpDto dto) signUp,
+    required TResult Function() signOut,
     required TResult Function(CreateUserDto dto) createUser,
     required TResult Function(User firebaseUser) setCurrentUser,
     required TResult Function(Contact user) updateCurrentUser,
@@ -1003,6 +1177,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -1016,6 +1191,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInDto dto)? signIn,
     TResult Function(SignUpDto dto)? signUp,
+    TResult Function()? signOut,
     TResult Function(CreateUserDto dto)? createUser,
     TResult Function(User firebaseUser)? setCurrentUser,
     TResult Function(Contact user)? updateCurrentUser,
@@ -1033,6 +1209,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(AuthCreateUserEvent value) createUser,
     required TResult Function(AuthSetCurrentUserEvent value) setCurrentUser,
     required TResult Function(AuthUpdateCurrentUserEvent value)
@@ -1048,6 +1225,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,
@@ -1061,6 +1239,7 @@ class _$AuthUpdateProfilePhotoEvent implements AuthUpdateProfilePhotoEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(AuthCreateUserEvent value)? createUser,
     TResult Function(AuthSetCurrentUserEvent value)? setCurrentUser,
     TResult Function(AuthUpdateCurrentUserEvent value)? updateCurrentUser,

@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/conversations/contacts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,7 +30,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/app/contacts',
       builder: (BuildContext context, GoRouterState state) {
-        return Text(state.location);
+        return const ContactsView();
       },
     ),
     GoRoute(

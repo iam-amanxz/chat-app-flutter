@@ -8,7 +8,7 @@ class ContactService {
   ContactService({required FirebaseFirestore db}) : _db = db;
 
   // get all contacts
-  Future<List<Contact>> get myContacts =>
+  Future<List<Contact>> get contacts =>
       _db.collection('contacts').orderBy('name').get().then((snapshot) =>
           snapshot.docs.map((doc) => Contact.fromJson(doc.data())).toList());
 

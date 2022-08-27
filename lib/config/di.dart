@@ -6,12 +6,10 @@ import 'package:logger/logger.dart';
 
 import '../features/auth/auth_service.dart';
 import '../features/contact/contact_service.dart';
+import '../features/conversation/conversation_service.dart';
 import '../features/notification/notification_service.dart';
 
 final authProvider = Provider.autoDispose((ref) {
-  ref.onDispose(() {
-    ref.read(loggerProvider).d('authProvider: disposing');
-  });
   return AuthService(
     auth: FirebaseAuth.instance,
     db: FirebaseFirestore.instance,
@@ -19,25 +17,23 @@ final authProvider = Provider.autoDispose((ref) {
   );
 });
 
-final contactProvider = Provider.autoDispose((ref) {
-  ref.onDispose(() {
-    ref.read(loggerProvider).d('contactProvider: disposing');
-  });
+final contactProvider = Provider((ref) {
   return ContactService(
     db: FirebaseFirestore.instance,
   );
 });
 
+final conversationProvider = Provider((ref) {
+  return ConversationService(
+    reader: ref.read,
+    db: FirebaseFirestore.instance,
+  );
+});
+
 final notificationProvider = Provider((ref) {
-  ref.onDispose(() {
-    ref.read(loggerProvider).d('notificationProvider: disposing');
-  });
   return NotificationService(logger: ref.read(loggerProvider));
 });
 
 final loggerProvider = Provider((ref) {
-  ref.onDispose(() {
-    print('loggerProvider: disposing');
-  });
   return Logger(printer: PrettyPrinter());
 });
