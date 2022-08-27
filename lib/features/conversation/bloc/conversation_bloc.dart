@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:chat_app/features/contact/model/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
@@ -26,6 +27,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     required this.reader,
   }) : super(const ConversationState.idle()) {
     on<LoadConversationsEvent>(_onLoadConversations);
+    on<CreateConversationsEvent>(_onCreateConversation);
   }
 
   Future<void> _onLoadConversations(
@@ -45,5 +47,22 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     }
   }
 
+  Future<void> _onCreateConversation(
+      CreateConversationsEvent event, Emitter<ConversationState> emit) async {
+    logger.d('ContactBloc: _onCreateConversation');
+    emit(const ConversationState.loading());
+    try {
+      await service.createConversation(event.participants);
+      emit(const ConversationState.success());
+      logger.i('ContactBloc: _onCreateConversation : success');
+    } catch (e) {
+      emit(const ConversationState.error(ConversationException.unknown()));
+      notification.add(Notification.createConversationFailed());
+      logger.e('AuthBloc: _onCreateConversation : error : ${e.toString()}');
+    }
+  }
+
   void loadConversations() => add(const ConversationEvent.loadConversations());
+  void createConversation(List<Contact> participants) =>
+      add(ConversationEvent.createConversation(participants: participants));
 }

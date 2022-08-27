@@ -1,4 +1,5 @@
 import 'package:chat_app/features/conversation/bloc/conversation_bloc.dart';
+import 'package:chat_app/features/message/bloc/message_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,6 +51,14 @@ class _AppState extends ConsumerState<App> with mix.NotificationListener {
             reader: ref.read,
             notification: ref.read(notificationProvider),
             service: ref.read(conversationProvider),
+            logger: ref.read(loggerProvider),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => MessageBloc(
+            reader: ref.read,
+            notification: ref.read(notificationProvider),
+            service: ref.read(messageProvider),
             logger: ref.read(loggerProvider),
           ),
         ),

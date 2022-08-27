@@ -1,10 +1,13 @@
-import 'package:chat_app/common/styles/text_styles.dart';
-import 'package:chat_app/features/auth/current_user_state.dart';
-import 'package:chat_app/features/contact/bloc/contact_bloc.dart';
-import 'package:chat_app/features/contact/bloc/contacts_state_provider.dart';
+import 'package:chat_app/features/conversation/bloc/conversation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../common/styles/text_styles.dart';
+import '../../features/auth/current_user_state.dart';
+import '../../features/contact/bloc/contact_bloc.dart';
+import '../../features/contact/bloc/contacts_state_provider.dart';
 
 class ContactsView extends StatelessWidget {
   const ContactsView({Key? key}) : super(key: key);
@@ -31,7 +34,9 @@ class ContactsView extends StatelessWidget {
                         style: titleStyle(),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<ContactBloc>().loadContacts();
+                        },
                         icon: const Icon(Icons.sync),
                       )
                     ],
@@ -45,7 +50,9 @@ class ContactsView extends StatelessWidget {
                         e.description,
                         style: const TextStyle(color: Colors.white),
                       ),
-                      loading: () => const CircularProgressIndicator(),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                       success: () {
                         return Consumer(
                           builder: ((context, ref, child) {
@@ -64,7 +71,18 @@ class ContactsView extends StatelessWidget {
                                     itemBuilder: ((context, index) {
                                       final contact = contacts[index];
                                       return InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          final participants = [
+                                            contact,
+                                            ref.read(currentUserState).value!
+                                          ];
+                                          context
+                                              .read<ConversationBloc>()
+                                              .createConversation(
+                                                participants,
+                                              );
+                                          GoRouter.of(context).pop();
+                                        },
                                         child: ListTile(
                                           contentPadding:
                                               const EdgeInsets.all(0),

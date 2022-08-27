@@ -68,4 +68,16 @@ class Notification {
       : type = NotificationType.error,
         title = 'Error',
         message = "Couldn't load conversations";
+  Notification.createConversationFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't create conversation";
+  Notification.loadMessagesFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't load messages";
+  Notification.sendMessageFailed()
+      : type = NotificationType.error,
+        title = 'Error',
+        message = "Couldn't send message";
 }

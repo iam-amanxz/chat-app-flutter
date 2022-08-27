@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'conversation_bloc.dart';
+part of 'message_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,270 +15,153 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ConversationEvent {
+mixin _$MessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadConversations,
-    required TResult Function(List<Contact> participants) createConversation,
+    required TResult Function(String conversationId) loadMessages,
+    required TResult Function(SendMessageDto dto) sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadConversationsEvent value) loadConversations,
-    required TResult Function(CreateConversationsEvent value)
-        createConversation,
+    required TResult Function(LoadMessagesEvent value) loadMessages,
+    required TResult Function(SendMessagesEvent value) sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConversationEventCopyWith<$Res> {
-  factory $ConversationEventCopyWith(
-          ConversationEvent value, $Res Function(ConversationEvent) then) =
-      _$ConversationEventCopyWithImpl<$Res>;
+abstract class $MessageEventCopyWith<$Res> {
+  factory $MessageEventCopyWith(
+          MessageEvent value, $Res Function(MessageEvent) then) =
+      _$MessageEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ConversationEventCopyWithImpl<$Res>
-    implements $ConversationEventCopyWith<$Res> {
-  _$ConversationEventCopyWithImpl(this._value, this._then);
+class _$MessageEventCopyWithImpl<$Res> implements $MessageEventCopyWith<$Res> {
+  _$MessageEventCopyWithImpl(this._value, this._then);
 
-  final ConversationEvent _value;
+  final MessageEvent _value;
   // ignore: unused_field
-  final $Res Function(ConversationEvent) _then;
+  final $Res Function(MessageEvent) _then;
 }
 
 /// @nodoc
-abstract class _$$LoadConversationsEventCopyWith<$Res> {
-  factory _$$LoadConversationsEventCopyWith(_$LoadConversationsEvent value,
-          $Res Function(_$LoadConversationsEvent) then) =
-      __$$LoadConversationsEventCopyWithImpl<$Res>;
+abstract class _$$LoadMessagesEventCopyWith<$Res> {
+  factory _$$LoadMessagesEventCopyWith(
+          _$LoadMessagesEvent value, $Res Function(_$LoadMessagesEvent) then) =
+      __$$LoadMessagesEventCopyWithImpl<$Res>;
+  $Res call({String conversationId});
 }
 
 /// @nodoc
-class __$$LoadConversationsEventCopyWithImpl<$Res>
-    extends _$ConversationEventCopyWithImpl<$Res>
-    implements _$$LoadConversationsEventCopyWith<$Res> {
-  __$$LoadConversationsEventCopyWithImpl(_$LoadConversationsEvent _value,
-      $Res Function(_$LoadConversationsEvent) _then)
-      : super(_value, (v) => _then(v as _$LoadConversationsEvent));
+class __$$LoadMessagesEventCopyWithImpl<$Res>
+    extends _$MessageEventCopyWithImpl<$Res>
+    implements _$$LoadMessagesEventCopyWith<$Res> {
+  __$$LoadMessagesEventCopyWithImpl(
+      _$LoadMessagesEvent _value, $Res Function(_$LoadMessagesEvent) _then)
+      : super(_value, (v) => _then(v as _$LoadMessagesEvent));
 
   @override
-  _$LoadConversationsEvent get _value =>
-      super._value as _$LoadConversationsEvent;
-}
-
-/// @nodoc
-
-class _$LoadConversationsEvent implements LoadConversationsEvent {
-  const _$LoadConversationsEvent();
-
-  @override
-  String toString() {
-    return 'ConversationEvent.loadConversations()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadConversationsEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadConversations,
-    required TResult Function(List<Contact> participants) createConversation,
-  }) {
-    return loadConversations();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
-  }) {
-    return loadConversations?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
-    required TResult orElse(),
-  }) {
-    if (loadConversations != null) {
-      return loadConversations();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadConversationsEvent value) loadConversations,
-    required TResult Function(CreateConversationsEvent value)
-        createConversation,
-  }) {
-    return loadConversations(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
-  }) {
-    return loadConversations?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
-    required TResult orElse(),
-  }) {
-    if (loadConversations != null) {
-      return loadConversations(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadConversationsEvent implements ConversationEvent {
-  const factory LoadConversationsEvent() = _$LoadConversationsEvent;
-}
-
-/// @nodoc
-abstract class _$$CreateConversationsEventCopyWith<$Res> {
-  factory _$$CreateConversationsEventCopyWith(_$CreateConversationsEvent value,
-          $Res Function(_$CreateConversationsEvent) then) =
-      __$$CreateConversationsEventCopyWithImpl<$Res>;
-  $Res call({List<Contact> participants});
-}
-
-/// @nodoc
-class __$$CreateConversationsEventCopyWithImpl<$Res>
-    extends _$ConversationEventCopyWithImpl<$Res>
-    implements _$$CreateConversationsEventCopyWith<$Res> {
-  __$$CreateConversationsEventCopyWithImpl(_$CreateConversationsEvent _value,
-      $Res Function(_$CreateConversationsEvent) _then)
-      : super(_value, (v) => _then(v as _$CreateConversationsEvent));
-
-  @override
-  _$CreateConversationsEvent get _value =>
-      super._value as _$CreateConversationsEvent;
+  _$LoadMessagesEvent get _value => super._value as _$LoadMessagesEvent;
 
   @override
   $Res call({
-    Object? participants = freezed,
+    Object? conversationId = freezed,
   }) {
-    return _then(_$CreateConversationsEvent(
-      participants: participants == freezed
-          ? _value._participants
-          : participants // ignore: cast_nullable_to_non_nullable
-              as List<Contact>,
+    return _then(_$LoadMessagesEvent(
+      conversationId: conversationId == freezed
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CreateConversationsEvent implements CreateConversationsEvent {
-  const _$CreateConversationsEvent({required final List<Contact> participants})
-      : _participants = participants;
+class _$LoadMessagesEvent implements LoadMessagesEvent {
+  const _$LoadMessagesEvent({required this.conversationId});
 
-  final List<Contact> _participants;
   @override
-  List<Contact> get participants {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_participants);
-  }
+  final String conversationId;
 
   @override
   String toString() {
-    return 'ConversationEvent.createConversation(participants: $participants)';
+    return 'MessageEvent.loadMessages(conversationId: $conversationId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateConversationsEvent &&
+            other is _$LoadMessagesEvent &&
             const DeepCollectionEquality()
-                .equals(other._participants, _participants));
+                .equals(other.conversationId, conversationId));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_participants));
+      runtimeType, const DeepCollectionEquality().hash(conversationId));
 
   @JsonKey(ignore: true)
   @override
-  _$$CreateConversationsEventCopyWith<_$CreateConversationsEvent>
-      get copyWith =>
-          __$$CreateConversationsEventCopyWithImpl<_$CreateConversationsEvent>(
-              this, _$identity);
+  _$$LoadMessagesEventCopyWith<_$LoadMessagesEvent> get copyWith =>
+      __$$LoadMessagesEventCopyWithImpl<_$LoadMessagesEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadConversations,
-    required TResult Function(List<Contact> participants) createConversation,
+    required TResult Function(String conversationId) loadMessages,
+    required TResult Function(SendMessageDto dto) sendMessage,
   }) {
-    return createConversation(participants);
+    return loadMessages(conversationId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
   }) {
-    return createConversation?.call(participants);
+    return loadMessages?.call(conversationId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadConversations,
-    TResult Function(List<Contact> participants)? createConversation,
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
     required TResult orElse(),
   }) {
-    if (createConversation != null) {
-      return createConversation(participants);
+    if (loadMessages != null) {
+      return loadMessages(conversationId);
     }
     return orElse();
   }
@@ -286,54 +169,188 @@ class _$CreateConversationsEvent implements CreateConversationsEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadConversationsEvent value) loadConversations,
-    required TResult Function(CreateConversationsEvent value)
-        createConversation,
+    required TResult Function(LoadMessagesEvent value) loadMessages,
+    required TResult Function(SendMessagesEvent value) sendMessage,
   }) {
-    return createConversation(this);
+    return loadMessages(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
   }) {
-    return createConversation?.call(this);
+    return loadMessages?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadConversationsEvent value)? loadConversations,
-    TResult Function(CreateConversationsEvent value)? createConversation,
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
     required TResult orElse(),
   }) {
-    if (createConversation != null) {
-      return createConversation(this);
+    if (loadMessages != null) {
+      return loadMessages(this);
     }
     return orElse();
   }
 }
 
-abstract class CreateConversationsEvent implements ConversationEvent {
-  const factory CreateConversationsEvent(
-      {required final List<Contact> participants}) = _$CreateConversationsEvent;
+abstract class LoadMessagesEvent implements MessageEvent {
+  const factory LoadMessagesEvent({required final String conversationId}) =
+      _$LoadMessagesEvent;
 
-  List<Contact> get participants;
+  String get conversationId;
   @JsonKey(ignore: true)
-  _$$CreateConversationsEventCopyWith<_$CreateConversationsEvent>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$LoadMessagesEventCopyWith<_$LoadMessagesEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ConversationState {
+abstract class _$$SendMessagesEventCopyWith<$Res> {
+  factory _$$SendMessagesEventCopyWith(
+          _$SendMessagesEvent value, $Res Function(_$SendMessagesEvent) then) =
+      __$$SendMessagesEventCopyWithImpl<$Res>;
+  $Res call({SendMessageDto dto});
+}
+
+/// @nodoc
+class __$$SendMessagesEventCopyWithImpl<$Res>
+    extends _$MessageEventCopyWithImpl<$Res>
+    implements _$$SendMessagesEventCopyWith<$Res> {
+  __$$SendMessagesEventCopyWithImpl(
+      _$SendMessagesEvent _value, $Res Function(_$SendMessagesEvent) _then)
+      : super(_value, (v) => _then(v as _$SendMessagesEvent));
+
+  @override
+  _$SendMessagesEvent get _value => super._value as _$SendMessagesEvent;
+
+  @override
+  $Res call({
+    Object? dto = freezed,
+  }) {
+    return _then(_$SendMessagesEvent(
+      dto: dto == freezed
+          ? _value.dto
+          : dto // ignore: cast_nullable_to_non_nullable
+              as SendMessageDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendMessagesEvent implements SendMessagesEvent {
+  const _$SendMessagesEvent({required this.dto});
+
+  @override
+  final SendMessageDto dto;
+
+  @override
+  String toString() {
+    return 'MessageEvent.sendMessage(dto: $dto)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendMessagesEvent &&
+            const DeepCollectionEquality().equals(other.dto, dto));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(dto));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SendMessagesEventCopyWith<_$SendMessagesEvent> get copyWith =>
+      __$$SendMessagesEventCopyWithImpl<_$SendMessagesEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String conversationId) loadMessages,
+    required TResult Function(SendMessageDto dto) sendMessage,
+  }) {
+    return sendMessage(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
+  }) {
+    return sendMessage?.call(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String conversationId)? loadMessages,
+    TResult Function(SendMessageDto dto)? sendMessage,
+    required TResult orElse(),
+  }) {
+    if (sendMessage != null) {
+      return sendMessage(dto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadMessagesEvent value) loadMessages,
+    required TResult Function(SendMessagesEvent value) sendMessage,
+  }) {
+    return sendMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
+  }) {
+    return sendMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadMessagesEvent value)? loadMessages,
+    TResult Function(SendMessagesEvent value)? sendMessage,
+    required TResult orElse(),
+  }) {
+    if (sendMessage != null) {
+      return sendMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendMessagesEvent implements MessageEvent {
+  const factory SendMessagesEvent({required final SendMessageDto dto}) =
+      _$SendMessagesEvent;
+
+  SendMessageDto get dto;
+  @JsonKey(ignore: true)
+  _$$SendMessagesEventCopyWith<_$SendMessagesEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$MessageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ConversationException exception) error,
+    required TResult Function(MessageException exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -341,7 +358,7 @@ mixin _$ConversationState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -349,7 +366,7 @@ mixin _$ConversationState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -381,20 +398,19 @@ mixin _$ConversationState {
 }
 
 /// @nodoc
-abstract class $ConversationStateCopyWith<$Res> {
-  factory $ConversationStateCopyWith(
-          ConversationState value, $Res Function(ConversationState) then) =
-      _$ConversationStateCopyWithImpl<$Res>;
+abstract class $MessageStateCopyWith<$Res> {
+  factory $MessageStateCopyWith(
+          MessageState value, $Res Function(MessageState) then) =
+      _$MessageStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ConversationStateCopyWithImpl<$Res>
-    implements $ConversationStateCopyWith<$Res> {
-  _$ConversationStateCopyWithImpl(this._value, this._then);
+class _$MessageStateCopyWithImpl<$Res> implements $MessageStateCopyWith<$Res> {
+  _$MessageStateCopyWithImpl(this._value, this._then);
 
-  final ConversationState _value;
+  final MessageState _value;
   // ignore: unused_field
-  final $Res Function(ConversationState) _then;
+  final $Res Function(MessageState) _then;
 }
 
 /// @nodoc
@@ -405,8 +421,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$ConversationStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$MessageStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -422,7 +437,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ConversationState.idle()';
+    return 'MessageState.idle()';
   }
 
   @override
@@ -440,7 +455,7 @@ class _$_Initial implements _Initial {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ConversationException exception) error,
+    required TResult Function(MessageException exception) error,
   }) {
     return idle();
   }
@@ -451,7 +466,7 @@ class _$_Initial implements _Initial {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
   }) {
     return idle?.call();
   }
@@ -462,7 +477,7 @@ class _$_Initial implements _Initial {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -509,7 +524,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ConversationState {
+abstract class _Initial implements MessageState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -521,8 +536,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$ConversationStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res> extends _$MessageStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -538,7 +552,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'ConversationState.loading()';
+    return 'MessageState.loading()';
   }
 
   @override
@@ -556,7 +570,7 @@ class _$_Loading implements _Loading {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ConversationException exception) error,
+    required TResult Function(MessageException exception) error,
   }) {
     return loading();
   }
@@ -567,7 +581,7 @@ class _$_Loading implements _Loading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
   }) {
     return loading?.call();
   }
@@ -578,7 +592,7 @@ class _$_Loading implements _Loading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -625,7 +639,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements ConversationState {
+abstract class _Loading implements MessageState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -637,8 +651,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res>
-    extends _$ConversationStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res> extends _$MessageStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -654,7 +667,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'ConversationState.success()';
+    return 'MessageState.success()';
   }
 
   @override
@@ -672,7 +685,7 @@ class _$_Success implements _Success {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ConversationException exception) error,
+    required TResult Function(MessageException exception) error,
   }) {
     return success();
   }
@@ -683,7 +696,7 @@ class _$_Success implements _Success {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
   }) {
     return success?.call();
   }
@@ -694,7 +707,7 @@ class _$_Success implements _Success {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -741,7 +754,7 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements ConversationState {
+abstract class _Success implements MessageState {
   const factory _Success() = _$_Success;
 }
 
@@ -749,11 +762,11 @@ abstract class _Success implements ConversationState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  $Res call({ConversationException exception});
+  $Res call({MessageException exception});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$ConversationStateCopyWithImpl<$Res>
+class __$$_ErrorCopyWithImpl<$Res> extends _$MessageStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, (v) => _then(v as _$_Error));
@@ -769,7 +782,7 @@ class __$$_ErrorCopyWithImpl<$Res> extends _$ConversationStateCopyWithImpl<$Res>
       exception == freezed
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
-              as ConversationException,
+              as MessageException,
     ));
   }
 }
@@ -780,11 +793,11 @@ class _$_Error implements _Error {
   const _$_Error(this.exception);
 
   @override
-  final ConversationException exception;
+  final MessageException exception;
 
   @override
   String toString() {
-    return 'ConversationState.error(exception: $exception)';
+    return 'MessageState.error(exception: $exception)';
   }
 
   @override
@@ -810,7 +823,7 @@ class _$_Error implements _Error {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(ConversationException exception) error,
+    required TResult Function(MessageException exception) error,
   }) {
     return error(exception);
   }
@@ -821,7 +834,7 @@ class _$_Error implements _Error {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
   }) {
     return error?.call(exception);
   }
@@ -832,7 +845,7 @@ class _$_Error implements _Error {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(ConversationException exception)? error,
+    TResult Function(MessageException exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -879,10 +892,10 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements ConversationState {
-  const factory _Error(final ConversationException exception) = _$_Error;
+abstract class _Error implements MessageState {
+  const factory _Error(final MessageException exception) = _$_Error;
 
-  ConversationException get exception;
+  MessageException get exception;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;

@@ -1,3 +1,4 @@
+import 'package:chat_app/features/message/message_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -25,6 +26,13 @@ final contactProvider = Provider((ref) {
 
 final conversationProvider = Provider((ref) {
   return ConversationService(
+    reader: ref.read,
+    db: FirebaseFirestore.instance,
+  );
+});
+
+final messageProvider = Provider((ref) {
+  return MessageService(
     reader: ref.read,
     db: FirebaseFirestore.instance,
   );

@@ -21,8 +21,9 @@ Conversation _$ConversationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Conversation {
   String get id => throw _privateConstructorUsedError;
-  List<String> get participantIds => throw _privateConstructorUsedError;
+  List<Contact> get participants => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
+  Message? get lastMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,13 @@ abstract class $ConversationCopyWith<$Res> {
   factory $ConversationCopyWith(
           Conversation value, $Res Function(Conversation) then) =
       _$ConversationCopyWithImpl<$Res>;
-  $Res call({String id, List<String> participantIds, DateTime updatedAt});
+  $Res call(
+      {String id,
+      List<Contact> participants,
+      DateTime updatedAt,
+      Message? lastMessage});
+
+  $MessageCopyWith<$Res>? get lastMessage;
 }
 
 /// @nodoc
@@ -49,23 +56,39 @@ class _$ConversationCopyWithImpl<$Res> implements $ConversationCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? participantIds = freezed,
+    Object? participants = freezed,
     Object? updatedAt = freezed,
+    Object? lastMessage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      participantIds: participantIds == freezed
-          ? _value.participantIds
-          : participantIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      participants: participants == freezed
+          ? _value.participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      lastMessage: lastMessage == freezed
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as Message?,
     ));
+  }
+
+  @override
+  $MessageCopyWith<$Res>? get lastMessage {
+    if (_value.lastMessage == null) {
+      return null;
+    }
+
+    return $MessageCopyWith<$Res>(_value.lastMessage!, (value) {
+      return _then(_value.copyWith(lastMessage: value));
+    });
   }
 }
 
@@ -76,7 +99,14 @@ abstract class _$$_ConversationCopyWith<$Res>
           _$_Conversation value, $Res Function(_$_Conversation) then) =
       __$$_ConversationCopyWithImpl<$Res>;
   @override
-  $Res call({String id, List<String> participantIds, DateTime updatedAt});
+  $Res call(
+      {String id,
+      List<Contact> participants,
+      DateTime updatedAt,
+      Message? lastMessage});
+
+  @override
+  $MessageCopyWith<$Res>? get lastMessage;
 }
 
 /// @nodoc
@@ -93,22 +123,27 @@ class __$$_ConversationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? participantIds = freezed,
+    Object? participants = freezed,
     Object? updatedAt = freezed,
+    Object? lastMessage = freezed,
   }) {
     return _then(_$_Conversation(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      participantIds: participantIds == freezed
-          ? _value._participantIds
-          : participantIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      participants: participants == freezed
+          ? _value._participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      lastMessage: lastMessage == freezed
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as Message?,
     ));
   }
 }
@@ -118,28 +153,31 @@ class __$$_ConversationCopyWithImpl<$Res>
 class _$_Conversation implements _Conversation {
   const _$_Conversation(
       {required this.id,
-      required final List<String> participantIds,
-      required this.updatedAt})
-      : _participantIds = participantIds;
+      required final List<Contact> participants,
+      required this.updatedAt,
+      this.lastMessage})
+      : _participants = participants;
 
   factory _$_Conversation.fromJson(Map<String, dynamic> json) =>
       _$$_ConversationFromJson(json);
 
   @override
   final String id;
-  final List<String> _participantIds;
+  final List<Contact> _participants;
   @override
-  List<String> get participantIds {
+  List<Contact> get participants {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_participantIds);
+    return EqualUnmodifiableListView(_participants);
   }
 
   @override
   final DateTime updatedAt;
+  @override
+  final Message? lastMessage;
 
   @override
   String toString() {
-    return 'Conversation(id: $id, participantIds: $participantIds, updatedAt: $updatedAt)';
+    return 'Conversation(id: $id, participants: $participants, updatedAt: $updatedAt, lastMessage: $lastMessage)';
   }
 
   @override
@@ -149,8 +187,10 @@ class _$_Conversation implements _Conversation {
             other is _$_Conversation &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other._participantIds, _participantIds) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+                .equals(other._participants, _participants) &&
+            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            const DeepCollectionEquality()
+                .equals(other.lastMessage, lastMessage));
   }
 
   @JsonKey(ignore: true)
@@ -158,8 +198,9 @@ class _$_Conversation implements _Conversation {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(_participantIds),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(_participants),
+      const DeepCollectionEquality().hash(updatedAt),
+      const DeepCollectionEquality().hash(lastMessage));
 
   @JsonKey(ignore: true)
   @override
@@ -177,8 +218,9 @@ class _$_Conversation implements _Conversation {
 abstract class _Conversation implements Conversation {
   const factory _Conversation(
       {required final String id,
-      required final List<String> participantIds,
-      required final DateTime updatedAt}) = _$_Conversation;
+      required final List<Contact> participants,
+      required final DateTime updatedAt,
+      final Message? lastMessage}) = _$_Conversation;
 
   factory _Conversation.fromJson(Map<String, dynamic> json) =
       _$_Conversation.fromJson;
@@ -186,9 +228,11 @@ abstract class _Conversation implements Conversation {
   @override
   String get id;
   @override
-  List<String> get participantIds;
+  List<Contact> get participants;
   @override
   DateTime get updatedAt;
+  @override
+  Message? get lastMessage;
   @override
   @JsonKey(ignore: true)
   _$$_ConversationCopyWith<_$_Conversation> get copyWith =>

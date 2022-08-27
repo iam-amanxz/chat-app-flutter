@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/conversations/chat_view.dart';
 import 'package:chat_app/screens/conversations/contacts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -34,27 +35,13 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/app/contacts/:contactId',
-      builder: (BuildContext context, GoRouterState state) {
-        return Text(state.location);
-      },
-    ),
-    GoRoute(
-      path: '/app/conversations',
-      builder: (BuildContext context, GoRouterState state) {
-        return Text(state.location);
-      },
-    ),
-    GoRoute(
       path: '/app/conversations/:conversationId',
       builder: (BuildContext context, GoRouterState state) {
-        return Text(state.location);
-      },
-    ),
-    GoRoute(
-      path: '/app/profile',
-      builder: (BuildContext context, GoRouterState state) {
-        return Text(state.location);
+        final extras = state.extra! as Map<String, dynamic>;
+        return ChatView(
+          conversationId: state.params['conversationId']!,
+          friend: extras['friend'],
+        );
       },
     ),
   ],
