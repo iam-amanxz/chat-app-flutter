@@ -1,6 +1,7 @@
-import 'package:chat_app/features/contact/model/contact.dart';
-import 'package:chat_app/features/message/model/message.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../contact/model/contact.dart';
+import '../../message/model/message.dart';
 
 part 'conversation.freezed.dart';
 part 'conversation.g.dart';

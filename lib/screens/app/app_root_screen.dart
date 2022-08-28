@@ -74,7 +74,6 @@ class _AppRootScreenState extends AuthRequiredState<AppRootScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onTap,
         items: _navItems,
-        backgroundColor: Colors.black,
         currentIndex: _selectedIndex,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: const TextStyle(
@@ -83,8 +82,6 @@ class _AppRootScreenState extends AuthRequiredState<AppRootScreen> {
         unselectedLabelStyle: const TextStyle(
           fontSize: 12,
         ),
-        unselectedItemColor: Colors.white54,
-        selectedItemColor: Colors.white,
       ),
     );
   }

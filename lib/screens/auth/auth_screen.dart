@@ -37,9 +37,9 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = 'John Doe';
-    _usernameController.text = 'johndoe';
-    _passwordController.text = 'password';
+    // _nameController.text = 'John Doe';
+    // _usernameController.text = 'johndoe';
+    // _passwordController.text = 'password';
   }
 
   @override
@@ -69,7 +69,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
               children: [
                 Text(
                   _isSignUp ? 'Sign Up' : 'Sign In',
-                  style: titleStyle(),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 const SizedBox(height: 20),
                 Form(
@@ -79,6 +79,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
                     children: [
                       _isSignUp
                           ? TextFormField(
+                              style: Theme.of(context).textTheme.bodyText1,
                               controller: _nameController,
                               validator: nameValidation,
                               decoration:
@@ -87,6 +88,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
                           : Container(),
                       _isSignUp ? const SizedBox(height: 10) : Container(),
                       TextFormField(
+                        style: Theme.of(context).textTheme.bodyText1,
                         controller: _usernameController,
                         validator: _isSignUp
                             ? usernameValidationSignUp
@@ -95,6 +97,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        style: Theme.of(context).textTheme.bodyText1,
                         controller: _passwordController,
                         validator: _isSignUp ? passwordValidationSignUp : null,
                         obscureText: true,
@@ -102,7 +105,6 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        style: primaryButtonStyle(),
                         onPressed: !_isLoading
                             ? () {
                                 bool isFormValid =
@@ -144,10 +146,7 @@ class _AuthScreenState extends FirebaseAuthState<AuthScreen> {
                           _isSignUp
                               ? "Already have an account? Sign In"
                               : "Don't have an account? Sign Up",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     ],

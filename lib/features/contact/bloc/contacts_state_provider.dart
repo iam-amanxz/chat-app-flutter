@@ -1,5 +1,5 @@
-import 'package:chat_app/config/di.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
+import '../../../config/di.dart';
+import '../model/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final contactsState = StateProvider<AsyncValue<List<Contact>>>((ref) {

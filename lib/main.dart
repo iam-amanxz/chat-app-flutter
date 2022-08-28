@@ -1,5 +1,5 @@
-import 'package:chat_app/features/conversation/bloc/conversation_bloc.dart';
-import 'package:chat_app/features/message/bloc/message_bloc.dart';
+import 'features/conversation/bloc/conversation_bloc.dart';
+import 'features/message/bloc/message_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
-import 'package:chat_app/features/message/dto/send_message_dto.dart';
-import 'package:chat_app/features/message/message_service.dart';
-import 'package:chat_app/features/message/messages_state_provider.dart';
-import 'package:chat_app/features/message/model/message.dart';
+import '../../contact/model/contact.dart';
+import '../dto/send_message_dto.dart';
+import '../message_service.dart';
+import '../messages_state_provider.dart';
+import '../model/message.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';

@@ -1,4 +1,3 @@
-import 'package:chat_app/features/auth/current_user_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../config/di.dart';
 import '../features/auth/auth_state.dart';
+import '../features/auth/current_user_state.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

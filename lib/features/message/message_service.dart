@@ -1,4 +1,4 @@
-import 'package:chat_app/features/auth/current_user_state.dart';
+import '../auth/current_user_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

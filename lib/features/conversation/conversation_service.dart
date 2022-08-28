@@ -1,6 +1,6 @@
-import 'package:chat_app/features/auth/current_user_state.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
-import 'package:chat_app/features/message/model/message.dart';
+import '../auth/current_user_state.dart';
+import '../contact/model/contact.dart';
+import '../message/model/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +18,7 @@ class ConversationService {
   Stream<List<Conversation>> get myConversations => _db
       .collection('conversations')
       .where('participants',
-          arrayContains: _reader(currentUserState).value!.toJson())
+          arrayContains: _reader(currentUserState).value?.toJson())
       .orderBy('updatedAt', descending: true)
       .snapshots()
       .map(

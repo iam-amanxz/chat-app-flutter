@@ -1,11 +1,11 @@
-import 'package:chat_app/common/styles/form_styles.dart';
-import 'package:chat_app/config/di.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
-import 'package:chat_app/features/conversation/bloc/conversation_bloc.dart';
-import 'package:chat_app/features/message/bloc/message_bloc.dart';
-import 'package:chat_app/features/message/dto/send_message_dto.dart';
-import 'package:chat_app/features/message/messages_state_provider.dart';
-import 'package:chat_app/features/message/model/message.dart';
+import '../../common/styles/form_styles.dart';
+import '../../config/di.dart';
+import '../../features/contact/model/contact.dart';
+import '../../features/conversation/bloc/conversation_bloc.dart';
+import '../../features/message/bloc/message_bloc.dart';
+import '../../features/message/dto/send_message_dto.dart';
+import '../../features/message/messages_state_provider.dart';
+import '../../features/message/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +15,7 @@ import '../../common/styles/text_styles.dart';
 import '../../features/auth/current_user_state.dart';
 import '../../features/contact/bloc/contact_bloc.dart';
 import '../../features/contact/bloc/contacts_state_provider.dart';
+import '../../common/extensions/is_dark_mode.dart';
 
 class ChatView extends StatefulWidget {
   final String conversationId;
@@ -35,14 +36,13 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Dialog(
-        insetPadding: const EdgeInsets.all(0),
-        backgroundColor: Colors.black,
-        child: BlocBuilder<MessageBloc, MessageState>(
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+    return Dialog(
+      insetPadding: const EdgeInsets.all(0),
+      child: BlocBuilder<MessageBloc, MessageState>(
+        builder: (context, state) {
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,9 +53,9 @@ class _ChatViewState extends State<ChatView> {
                       receiverId: widget.friend.id)
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -71,148 +71,117 @@ class MessagesList extends ConsumerStatefulWidget {
 }
 
 class _MessagesListState extends ConsumerState<MessagesList> {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final Tween<Offset> _offset =
+      Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
+  late Stream<List<Message>> stream;
+  List<Message> currentMessageList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    stream = ref.read(messageProvider).getMessages(widget.conversationId);
+
+    stream.listen((newMessages) {
+      final List<Message> messageList = newMessages;
+
+      if (_listKey.currentState != null &&
+          _listKey.currentState!.widget.initialItemCount < messageList.length) {
+        List<Message> updateList =
+            messageList.where((e) => !currentMessageList.contains(e)).toList();
+
+        for (var update in updateList) {
+          final int updateIndex = messageList.indexOf(update);
+          _listKey.currentState?.insertItem(updateIndex);
+        }
+      }
+
+      currentMessageList = messageList;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0),
-        child: StreamBuilder<List<Message>>(
-          stream: ref.read(messageProvider).getMessages(widget.conversationId),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container();
-            }
-            if (snapshot.hasError) {
-              return const Text(
-                'Oops! something went wrong!',
-                style: TextStyle(color: Colors.white),
-              );
-            }
+      child: StreamBuilder<List<Message>>(
+        stream: stream,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container();
+          }
+          if (snapshot.hasError) {
+            return const Text(
+              'Oops! something went wrong!',
+              style: TextStyle(color: Colors.white),
+            );
+          }
 
-            if (snapshot.hasData) {
-              final messages = snapshot.requireData;
+          if (snapshot.hasData) {
+            final messages = snapshot.requireData;
 
-              return ListView.builder(
-                  itemCount: messages.length,
-                  reverse: true,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                        top: 7,
-                        bottom: 7,
-                      ),
-                      child: Align(
-                        alignment: messages[index].senderId !=
-                                ref.watch(currentUserState).value!.id
-                            ? Alignment.topLeft
-                            : Alignment.topRight,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: messages[index].senderId !=
+            return AnimatedList(
+              key: _listKey,
+              physics: const BouncingScrollPhysics(),
+              reverse: true,
+              initialItemCount: messages.length,
+              itemBuilder: (context, index, animation) {
+                final message = messages[index];
+                return SlideTransition(
+                  position: animation.drive(_offset),
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      top: 7,
+                      bottom: 7,
+                    ),
+                    child: Align(
+                      alignment: message.senderId !=
+                              ref.watch(currentUserState).value!.id
+                          ? Alignment.topLeft
+                          : Alignment.topRight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: message.senderId !=
+                                  ref.watch(currentUserState).value!.id
+                              ? context.isDarkMode
+                                  ? Colors.grey.shade800
+                                  : Colors.grey.shade200
+                              : context.isDarkMode
+                                  ? Colors.green.shade700
+                                  : Colors.deepPurple,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          message.content,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: message.senderId !=
                                     ref.watch(currentUserState).value!.id
-                                ? Colors.white24
-                                : Colors.green.shade700,
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 10,
-                          ),
-                          child: Text(
-                            messages[index].content,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),
+                                ? context.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black
+                                : Colors.white,
                           ),
                         ),
                       ),
-                    );
-                  });
-            }
-            return Container();
-          },
-        ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+          return Container();
+        },
       ),
     );
   }
 }
-// class MessagesList extends ConsumerWidget {
-//   final String conversationId;
-//   const MessagesList({Key? key, required this.conversationId})
-//       : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return Expanded(
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(vertical: 15.0),
-//         child: StreamBuilder<List<Message>>(
-//           stream: ref.read(messageProvider).getMessages(conversationId),
-//           builder: (context, snapshot) {
-//             if (snapshot.connectionState == ConnectionState.waiting) {
-//               return Container();
-//             }
-//             if (snapshot.hasError) {
-//               return const Text(
-//                 'Oops! something went wrong!',
-//                 style: TextStyle(color: Colors.white),
-//               );
-//             }
-
-//             if (snapshot.hasData) {
-//               final messages = snapshot.requireData;
-//               return ListView.builder(
-//                   itemCount: messages.length,
-//                   reverse: true,
-//                   shrinkWrap: true,
-//                   itemBuilder: (context, index) {
-//                     return Container(
-//                       padding: const EdgeInsets.only(
-//                         left: 10,
-//                         right: 10,
-//                         top: 7,
-//                         bottom: 7,
-//                       ),
-//                       child: Align(
-//                         alignment: messages[index].senderId !=
-//                                 ref.watch(currentUserState).value!.id
-//                             ? Alignment.topLeft
-//                             : Alignment.topRight,
-//                         child: Container(
-//                           decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(100),
-//                             color: messages[index].senderId !=
-//                                     ref.watch(currentUserState).value!.id
-//                                 ? Colors.white24
-//                                 : Colors.green.shade700,
-//                           ),
-//                           padding: const EdgeInsets.symmetric(
-//                             horizontal: 16,
-//                             vertical: 10,
-//                           ),
-//                           child: Text(
-//                             messages[index].content,
-//                             style: const TextStyle(
-//                               fontSize: 14,
-//                               color: Colors.white,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     );
-//                   });
-//             }
-//             return Container();
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class ChatSenderForm extends StatefulWidget {
   final String conversationId;
@@ -260,21 +229,29 @@ class _ChatSenderFormState extends State<ChatSenderForm> {
                 }
               },
               controller: _controller,
-              style: const TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                fontSize: 18.0,
+                color: context.isDarkMode ? Colors.white : Colors.black,
+              ),
               decoration: InputDecoration(
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: 5.0,
                   horizontal: 10.0,
                 ),
-                fillColor: Colors.white10,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+                fillColor: context.isDarkMode
+                    ? Colors.grey.shade900
+                    : Colors.grey.shade300,
                 enabledBorder: OutlineInputBorder(
+                  borderSide: context.isDarkMode
+                      ? const BorderSide(color: Colors.black)
+                      : const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 focusedBorder: OutlineInputBorder(
+                  borderSide: context.isDarkMode
+                      ? const BorderSide(color: Colors.black)
+                      : const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
@@ -296,7 +273,11 @@ class _ChatSenderFormState extends State<ChatSenderForm> {
                       _isFormValid = false;
                     });
                   },
-                  icon: const Icon(Icons.send),
+                  icon: Icon(
+                    Icons.send,
+                    color:
+                        context.isDarkMode ? Colors.white : Colors.deepPurple,
+                  ),
                 )
               : Container()
         ],
@@ -324,13 +305,10 @@ class ChatHeader extends StatelessWidget {
             leading: CircleAvatar(
               backgroundImage: NetworkImage(friend.photoUrl!),
               radius: 25.0,
-              backgroundColor: Colors.white,
             ),
             title: Text(
               friend.username,
-              style: const TextStyle(
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
         ),

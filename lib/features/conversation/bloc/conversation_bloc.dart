@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
+import '../../contact/model/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';

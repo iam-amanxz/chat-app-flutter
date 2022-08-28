@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/features/auth/current_user_state.dart';
-import 'package:chat_app/features/contact/model/contact.dart';
+import '../current_user_state.dart';
+import '../../contact/model/contact.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

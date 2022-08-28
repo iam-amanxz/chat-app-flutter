@@ -1,26 +1,24 @@
-import 'package:chat_app/features/conversation/bloc/conversation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../common/styles/text_styles.dart';
 import '../../features/auth/current_user_state.dart';
 import '../../features/contact/bloc/contact_bloc.dart';
 import '../../features/contact/bloc/contacts_state_provider.dart';
+import '../../features/conversation/bloc/conversation_bloc.dart';
 
 class ContactsView extends StatelessWidget {
   const ContactsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Dialog(
-        insetPadding: const EdgeInsets.all(0),
-        backgroundColor: Colors.black,
-        child: BlocBuilder<ContactBloc, ContactState>(
-          builder: (context, state) {
-            return Padding(
+    return Dialog(
+      insetPadding: const EdgeInsets.all(0),
+      child: BlocBuilder<ContactBloc, ContactState>(
+        builder: (context, state) {
+          return SafeArea(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -31,7 +29,7 @@ class ContactsView extends StatelessWidget {
                     children: [
                       Text(
                         'Contacts',
-                        style: titleStyle(),
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                       IconButton(
                         onPressed: () {
@@ -48,7 +46,7 @@ class ContactsView extends StatelessWidget {
                       idle: () => Container(),
                       error: (e) => Text(
                         e.description,
-                        style: const TextStyle(color: Colors.white),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
@@ -94,9 +92,9 @@ class ContactsView extends StatelessWidget {
                                           ),
                                           title: Text(
                                             contact.username,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
                                           ),
                                         ),
                                       );
@@ -110,9 +108,9 @@ class ContactsView extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

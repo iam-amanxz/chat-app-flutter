@@ -8,6 +8,7 @@ import '../../common/styles/form_styles.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/auth/current_user_state.dart';
 import '../../features/contact/model/contact.dart';
+import '../../common/extensions/is_dark_mode.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -110,11 +111,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                   child: Column(
                     children: [
                       TextFormField(
+                        style: TextStyle(
+                          color:
+                              context.isDarkMode ? Colors.white : Colors.black,
+                        ),
                         controller: _nameController,
                         decoration: formInputDecoration(labelText: 'Name'),
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        style: TextStyle(
+                          color:
+                              context.isDarkMode ? Colors.white : Colors.black,
+                        ),
                         controller: _aboutController,
                         decoration: formInputDecoration(labelText: 'About'),
                       ),
@@ -140,7 +149,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
       ),
       floatingActionButton: !_isLoading
           ? FloatingActionButton(
-              backgroundColor: Colors.white,
               onPressed: () {
                 if (_currentUser == null) {
                   return;
@@ -155,7 +163,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                 context.read<AuthBloc>().updateCurrentUser(user);
                 FocusScope.of(context).unfocus();
               },
-              child: const Icon(Icons.save),
+              child: const Icon(
+                Icons.save,
+              ),
             )
           : Container(),
     );

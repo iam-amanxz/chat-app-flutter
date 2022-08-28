@@ -1,5 +1,5 @@
-import 'package:chat_app/screens/conversations/chat_view.dart';
-import 'package:chat_app/screens/conversations/contacts_view.dart';
+import '../screens/conversations/chat_view.dart';
+import '../screens/conversations/contacts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

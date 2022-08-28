@@ -1,7 +1,7 @@
-import 'package:chat_app/config/di.dart';
-import 'package:chat_app/features/auth/current_user_state.dart';
-import 'package:chat_app/features/contact/bloc/contact_bloc.dart';
-import 'package:chat_app/features/conversation/model/conversation.dart';
+import '../../config/di.dart';
+import '../../features/auth/current_user_state.dart';
+import '../../features/contact/bloc/contact_bloc.dart';
+import '../../features/conversation/model/conversation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +42,7 @@ class _ConversationsScreenState extends ConsumerState<ConversationsScreen> {
             children: [
               Text(
                 'Conversations',
-                style: titleStyle(),
+                style: Theme.of(context).textTheme.headline1,
               ),
               IconButton(
                 onPressed: () {
@@ -63,9 +63,9 @@ class _ConversationsScreenState extends ConsumerState<ConversationsScreen> {
                 return const CircularProgressIndicator();
               }
               if (snapshot.hasError) {
-                return const Text(
+                return Text(
                   'Oops! something went wrong!',
-                  style: TextStyle(color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyText1,
                 );
               }
               if (snapshot.hasData) {
@@ -76,7 +76,7 @@ class _ConversationsScreenState extends ConsumerState<ConversationsScreen> {
                     itemBuilder: ((context, index) {
                       final conversation = conversations[index];
                       final friend = conversation.participants.firstWhere(
-                          (p) => p.id != ref.read(currentUserState).value!.id);
+                          (p) => p.id != ref.read(currentUserState).value?.id);
                       return InkWell(
                         onTap: () {
                           final conversationId = conversation.id;
@@ -95,18 +95,16 @@ class _ConversationsScreenState extends ConsumerState<ConversationsScreen> {
                           ),
                           title: Text(
                             friend.username,
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           subtitle: Text(
                             conversation.lastMessage?.content ?? '',
-                            style: const TextStyle(color: Colors.white38),
+                            style: Theme.of(context).textTheme.subtitle1,
                           ),
                           trailing: Text(
                             conversation.lastMessage?.formattedCreatedAt() ??
                                 '',
-                            style: const TextStyle(color: Colors.white38),
+                            style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ),
                       );
