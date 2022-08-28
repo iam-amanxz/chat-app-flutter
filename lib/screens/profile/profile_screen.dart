@@ -80,13 +80,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: CircleAvatar(
+                    backgroundImage: NetworkImage(user.photoUrl!),
                     radius: 55.0,
                     child: !_isLoading
-                        ? Image.network(
-                            user.photoUrl!,
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Text('Error Loading'),
-                          )
+                        ? Container()
                         : const CircularProgressIndicator(),
                   ),
                 ),
