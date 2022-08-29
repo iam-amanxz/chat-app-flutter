@@ -18,3 +18,7 @@ flutter run
 - Authentication
 - Realtime chatting
 - Profile update
+
+
+### IMPORTANT NOTES
+- IOS app might not work since I don't own a Mac to test
